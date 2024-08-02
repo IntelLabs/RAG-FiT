@@ -1,0 +1,25 @@
+components:
+    retriever:
+        init_parameters:
+            document_store:
+                type: haystack_integrations.document_stores.qdrant.document_store.QdrantDocumentStore
+                init_parameters:
+                    url: qdrant.url.com
+                    port: 6333
+                    index: wikipedia
+                    embedding_dim: 768
+                    similarity: dot_product
+                    write_batch_size: 50
+            top_k: 10
+        type: haystack_integrations.components.retrievers.qdrant.retriever.QdrantEmbeddingRetriever
+    text_embedder:
+        init_parameters:
+            batch_size: 64
+            model: BAAI/llm-embedder
+            prefix: "Represent this query for retrieving relevant documents: "
+            device:
+        type: haystack.components.embedders.sentence_transformers_text_embedder.SentenceTransformersTextEmbedder
+connections:
+    - receiver: retriever.query_embedding
+      sender: text_embedder.embedding
+

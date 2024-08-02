@@ -1,0 +1,58 @@
+name: my_processing_pipeline
+cache: true
+output_path: .
+hfhub_tag:
+steps:
+    - _target_: ragfoundry.processing.dataset_loaders.loaders.HFLoader
+      inputs: main
+      dataset_config:
+        path: Tevatron/wikipedia-nq
+        split: train
+
+    - _target_: ragfoundry.processing.global_steps.sampling.ShuffleSelect
+      inputs: main
+      shuffle: 42
+      limit: 10000
+
+    - _target_: ragfoundry.processing.local_steps.context.ContextHandler
+      inputs: main
+      docs_key: positive_passages
+      text_key: text
+
+    - _target_: ragfoundry.processing.local_steps.context.DocumentsJoiner
+      inputs: main
+      docs_key: positive_passages
+
+    - _target_: ragfoundry.processing.local_steps.formatting.FlattenList
+      inputs: main
+      input_key: answers
+      output_key: answers
+
+    - _target_: ragfoundry.processing.global_steps.sampling.FewShot
+      inputs: main
+      k: 3
+      output_key: fewshot_examples
+
+    - _target_: ragfoundry.processing.local_steps.prompter.FewshotPrompter
+      inputs: main
+      prompt_file: ragfoundry/processing/prompts/qa-with-answer.txt
+      fewshot_key: fewshot_examples
+      output_key: fewshot_examples
+      mapping:
+            question: query
+            context: positive_passages
+            answer: answers
+
+    - _target_: ragfoundry.processing.local_steps.prompter.TextPrompter
+      inputs: main
+      prompt_file: ragfoundry/processing/prompts/qa-fewshot.txt
+      output_key: prompt
+      mapping:
+            question: query
+            context: positive_passages
+            fewshot: fewshot_examples
+            answer: answers
+
+    - _target_: ragfoundry.processing.global_steps.output.OutputData
+      inputs: main
+      prefix: nq_processed

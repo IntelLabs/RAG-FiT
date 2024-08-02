@@ -1,0 +1,43 @@
+name: asqa_cot_raft_train
+cache: false
+output_path: .
+hfhub_tag:
+steps:
+    - _target_: ragfoundry.processing.dataset_loaders.loaders.LocalLoader
+      inputs: train
+      filename: asqa-train.jsonl
+
+    - _target_: ragfoundry.processing.local_steps.raft.RAFTStep
+      inputs: train
+      k: 5
+      raft_p: 0.5
+      neg_docs_num: 2
+      output_key: raft_docs
+
+    - _target_: ragfoundry.processing.local_steps.context.DocumentsJoiner
+      inputs: train
+      docs_key: raft_docs
+      k:
+
+    - _target_: ragfoundry.processing.local_steps.prompter.TextPrompter
+      inputs: train
+      prompt_file: ragfoundry/processing/prompts/cot.txt
+      output_key: prompt
+      mapping:
+            question: query
+            context: raft_docs
+
+    - _target_: ragfoundry.processing.local_steps.api.openai.OpenAIChat
+      inputs: train
+      prompt_key: prompt
+      answer_key: generated_answer
+      instruction: ragfoundry/processing/prompts/prompt_instructions/qa.txt
+      model:
+            azure_endpoint: azure.endpoint.com
+            api_version: 2024-05-01-preview
+            model: GPT-4-32k-Bot
+
+    - _target_: ragfoundry.processing.global_steps.output.OutputData
+      inputs: train
+      prefix: asqa-raft-cot
+

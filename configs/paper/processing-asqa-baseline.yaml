@@ -1,0 +1,20 @@
+name: asqa_baseline
+cache: false
+output_path: .
+hfhub_tag:
+steps:
+    - _target_: ragfoundry.processing.dataset_loaders.loaders.LocalLoader
+      inputs: dev
+      filename: asqa-dev.jsonl
+
+    - _target_: ragfoundry.processing.local_steps.prompter.TextPrompter
+      inputs: dev
+      prompt_file: ragfoundry/processing/prompts/qa-short.txt
+      output_key: prompt
+      mapping:
+            query: query
+
+    - _target_: ragfoundry.processing.global_steps.output.OutputData
+      inputs: dev
+      prefix: asqa-baseline
+

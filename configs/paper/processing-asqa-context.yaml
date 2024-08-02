@@ -1,0 +1,30 @@
+name: asqa_context
+cache: false
+output_path: .
+hfhub_tag:
+steps:
+    - _target_: ragfoundry.processing.dataset_loaders.loaders.LocalLoader
+      inputs: train
+      filename: asqa-train.jsonl
+
+    - _target_: ragfoundry.processing.dataset_loaders.loaders.LocalLoader
+      inputs: dev
+      filename: asqa-dev.jsonl
+
+    - _target_: ragfoundry.processing.local_steps.context.DocumentsJoiner
+      inputs: [train, dev]
+      docs_key: positive_passages
+      k: 5
+
+    - _target_: ragfoundry.processing.local_steps.prompter.TextPrompter
+      inputs: [train, dev]
+      prompt_file: ragfoundry/processing/prompts/qa.txt
+      output_key: prompt
+      mapping:
+            question: query
+            context: positive_passages
+
+    - _target_: ragfoundry.processing.global_steps.output.OutputData
+      inputs: [train, dev]
+      prefix: asqa-context
+

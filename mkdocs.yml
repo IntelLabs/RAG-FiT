@@ -1,0 +1,190 @@
+# site info
+site_name: RAG Foundry Documentation
+# site_url: http://
+site_author: Intel Labs
+site_description:
+  Small, minimalistic and modular library to improve and measure LLMs RAG ability, using prompt-engineering and fine-tuning.
+
+# Repository
+# repo_url: https://github.com/IntelLabs/RAGFoundry
+# repo_name: IntelLabs/RAGFoundry
+
+# theme
+theme:
+  name: material
+  palette:
+    - scheme: ragfoundry
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+      primary: black
+      accent: light-blue
+  font:
+    text: Open sans
+    code: inconsolata
+  language: en
+  logo: assets/logo.png
+  features:
+    - announce.dismiss
+    # - content.action.edit
+    # - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    # - content.code.select
+    # - content.footnote.tooltips
+    # - content.tabs.link
+    - content.tooltips
+    # - header.autohide
+    # - navigation.expand
+    - navigation.footer
+    - navigation.indexes
+    # - navigation.instant
+    # - navigation.instant.prefetch
+    # - navigation.instant.progress
+    # - navigation.prune
+    - navigation.sections
+    - navigation.tabs
+    # - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    # - toc.integrate
+  icon:
+    repo: fontawesome/brands/github
+extra_css:
+  - stylesheets/extra.css
+plugins:
+  - blog
+  - search:
+      separator:
+        '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+      # - gen-files:
+      #     scripts:
+      #     - docs/scripts/generate_docstrings.py
+  - mkdocstrings:
+      handlers:
+        python:
+          # selection:
+          #   inherited_members: true # Allow looking up inherited methods
+          options:
+            # show_protected_members: true
+            # show_private_members: true
+            # docstring_style: google
+            docstring_section_style: list
+            show_source: false # don't include source code
+            show_docstring_functions: true
+            show_signature_annotations: true
+            show_docstring_description: true
+            show_docstring_examples: true
+            # show_docstring_attributes: true
+            # merge_init_into_class: false
+            # rendering:
+            #   docstring_section_style: list
+            #   show_root_heading: true # actually display anything at all...
+            #   # show_root_full_path: true  # display "diffrax.asdf" not just "asdf"
+            #   show_if_no_docstring: true
+            #   show_signature_annotations: true
+            #   show_source: false # don't include source code
+            #   show_docstring_attributes: true
+            #   merge_init_into_class: false
+            #   # members_order: source # order methods according to their order of definition in the source code, not alphabetical order
+            #   # heading_level: 4
+            # Extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      normalize_issue_symbols: true
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      auto_append:
+        - includes/mkdocs.md
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+extra:
+  generator: false
+
+nav:
+  - Home:
+      - Home: "index.md"
+      - Data Augmentation: "processing.md"
+      - Training: "training.md"
+      - Inference: "inference.md"
+      - Evaluation: "evaluation.md"
+  - API:
+      - Processing:
+          - Step: "reference/processing/step.md"
+          - Pipeline: "reference/processing/pipeline.md"
+          - Utils: "reference/processing/utils.md"
+          - Dataset Loaders:
+              - loaders: "reference/processing/dataset_loaders/loaders.md"
+          - Answer Processors:
+              - regex: "reference/processing/answer_processors/regex.md"
+          - Local Steps:
+              - Common Datasets: "reference/processing/local_steps/common_datasets.md"
+              - Formatting: "reference/processing/local_steps/formatting.md"
+              - Retrievers:
+                  - Haystack:
+                      "reference/processing/local_steps/retrievers/haystack.md"
+              - Context: "reference/processing/local_steps/context.md"
+              - Prompt Creation: "reference/processing/local_steps/prompter.md"
+              - RAFT: "reference/processing/local_steps/raft.md"
+              - API:
+                  - OpenAI Chat:
+                      "reference/processing/local_steps/api/openai.md"
+          - Global Steps:
+              - Sampling and Fewshot: "reference/processing/global_steps/sampling.md"
+              - Output: "reference/processing/global_steps/output.md"
+      - Models:
+          - Transformers: "reference/models/hf.md"
+          - OpenAI: "reference/models/openai_executor.md"
+      - Evaluation:
+          - Base: "reference/evaluation/base.md"
+          - Metrics: "reference/evaluation/metrics.md"
+          - DeepEval: "reference/evaluation/deep.md"
+

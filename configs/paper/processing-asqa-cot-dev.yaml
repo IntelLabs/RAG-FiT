@@ -1,0 +1,26 @@
+name: asqa_cot_dev
+cache: false
+output_path: .
+hfhub_tag:
+steps:
+    - _target_: ragfoundry.processing.dataset_loaders.loaders.LocalLoader
+      inputs: dev
+      filename: asqa-dev.jsonl
+
+    - _target_: ragfoundry.processing.local_steps.context.DocumentsJoiner
+      inputs: dev
+      docs_key: positive_passages
+      k: 5
+
+    - _target_: ragfoundry.processing.local_steps.prompter.TextPrompter
+      inputs: dev
+      prompt_file: ragfoundry/processing/prompts/cot.txt
+      output_key: prompt
+      mapping:
+            question: query
+            context: positive_passages
+
+    - _target_: ragfoundry.processing.global_steps.output.OutputData
+      inputs: dev
+      prefix: asqa-cot
+

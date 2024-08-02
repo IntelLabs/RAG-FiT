@@ -1,0 +1,20 @@
+answer_processor:
+    _target_: ragfoundry.processing.answer_processors.regex.RegexAnswer
+    capture_pattern: "<ANSWER>: (.*)"
+    stopping_pattern:
+
+metrics:
+    - _target_: ragfoundry.evaluation.metrics.StringEM
+
+key_names:
+    generated: text
+    label: answer-short
+    query: query
+
+results_file: evaluation-asqa-baseline.yaml
+generated_file: asqa-baseline-dev-generated.jsonl
+data_file: asqa-baseline-dev.jsonl
+limit:
+use_wandb:
+experiment:
+wandb_entity:

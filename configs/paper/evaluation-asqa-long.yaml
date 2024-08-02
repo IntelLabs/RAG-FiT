@@ -1,0 +1,29 @@
+answer_processor:
+    _target_: ragfoundry.processing.answer_processors.regex.RegexAnswer
+    capture_pattern: "<ANSWER>: (.*)"
+    stopping_pattern:
+
+metrics:
+    - _target_: ragfoundry.evaluation.deep.Faithfulness
+      azure_endpoint: azure.endpoint.com
+      azure_deployment: GPT-4-32k-Bot
+      api_version: 2024-05-01-preview
+    - _target_: ragfoundry.evaluation.deep.Relevancy
+      azure_endpoint: azure.endpoint.com
+      azure_deployment: GPT-4-32k-Bot
+      api_version: 2024-05-01-preview
+      embeddings: BAAI/bge-small-en-v1.5
+
+key_names:
+    generated: text
+    label: answers
+    query: query
+    context: positive_passages
+
+results_file: asqa-context-dev-generated-results.yaml
+generated_file: asqa-context-dev-generated.jsonl
+data_file: asqa-context-dev.jsonl
+limit:
+use_wandb:
+experiment:
+wandb_entity:

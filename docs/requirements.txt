@@ -1,0 +1,6 @@
+mkdocs-material
+mkdocstrings
+mkdocs-gen-files
+mkdocstrings-python-legacy
+mkdocstrings-python
+mkdocs-gen-files
