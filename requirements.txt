@@ -1,4 +1,4 @@
-torch==2.1.2
+torch==2.2.0
 transformers==4.42.3
 datasets==2.16.1
 haystack-ai==2.3.1
