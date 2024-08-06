@@ -15,9 +15,6 @@ def main(args):
     pipeline = DataPipeline(**args)
     pipeline.process()
 
-    if args.hfhub_tag:
-        pipeline.push_to_hub(args.hfhub_tag, private=True)
-
 
 if __name__ == "__main__":
     main()

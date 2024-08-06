@@ -66,7 +66,7 @@ Individual keywords can be overridden as well:
 ```sh
 python processing -cp configs/paper -cn processing-asqa-retrieval   \
        output_path=/store/data/here                                 \
-       hfhub_tag=my_org/my_data
+       cache=true
 ```
 
 For a complete set of configurations, **reproducing the experimentation in the paper with the ASQA dataset**, see the

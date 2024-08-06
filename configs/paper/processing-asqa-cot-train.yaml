@@ -1,7 +1,6 @@
 name: asqa_cot_raft_train
 cache: false
 output_path: .
-hfhub_tag:
 steps:
     - _target_: ragfoundry.processing.dataset_loaders.loaders.LocalLoader
       inputs: train

@@ -137,6 +137,3 @@ class DataPipeline:
                 step(self.datasets)
                 self.cache_step(step, i)
                 self.last_update = i
-
-    def push_to_hub(self, tag, private=True):
-        self.datasets[self.inputs].push_to_hub(tag, private=private)

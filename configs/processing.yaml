@@ -1,7 +1,6 @@
 name: my_processing_pipeline
 cache: true
 output_path: .
-hfhub_tag:
 steps:
     - _target_: ragfoundry.processing.dataset_loaders.loaders.HFLoader
       inputs: main
@@ -56,3 +55,7 @@ steps:
     - _target_: ragfoundry.processing.global_steps.output.OutputData
       inputs: main
       prefix: nq_processed
+
+    - _target_: ragfoundry.processing.global_steps.output.HFHubOutput
+      inputs: main
+      hfhub_tag: username/dataset_tag_name
