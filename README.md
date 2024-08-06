@@ -59,12 +59,12 @@ There are default configurations for each module in the [configs](./configs/) fo
 overridden like so:
 
 ```sh
-python processing -cp configs/paper -cp processing-asqa-retrieval
+python processing -cp configs/paper -cn processing-asqa-retrieval
 ```
 
 Individual keywords can be overridden as well:
 ```sh
-python processing -cp configs/paper -cp processing-asqa-retrieval   \
+python processing -cp configs/paper -cn processing-asqa-retrieval   \
        output_path=/store/data/here                                 \
        hfhub_tag=my_org/my_data
 ```
