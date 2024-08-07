@@ -4,9 +4,7 @@
 
 ----------
 
-A framework for enhancing LLMs for RAG use-cases by enabling users to create data-augmented datasets for tuning and
-evaluation of LLMs, using RAG workflows.
-
+[RAG Foundry: A Framework for Enhancing LLMs for Retrieval Augmented Generation](https://arxiv.org/abs/2408.02545)
 
 **RAG Foundry** is a library designed to improve LLMs ability to use external information by fine-tuning models on
 specially created RAG-augmented datasets. The library helps create the data for training, given a RAG technique, helps
@@ -71,6 +69,22 @@ python processing -cp configs/paper -cn processing-asqa-retrieval   \
 
 For a complete set of configurations, **reproducing the experimentation in the paper with the ASQA dataset**, see the
 configurations in the [Paper](./configs/paper) folder.
+
+## Citation
+
+Please cite our paper if it helps your research:
+
+```BibTex
+@article{fleischerRAGFoundryFramework2024,
+  title =        {{RAG} {Foundry}: {A} {Framework} for {Enhancing} {LLMs} for {Retrieval} {Augmented} {Generation}},
+  author =       {Fleischer, Daniel and Berchansky, Moshe and Wasserblat, Moshe and Izsak, Peter},
+  year =         2024,
+  note =         {arXiv:2408.02545 [cs]},
+  annote =       {Comment: 10 pages},
+  url =          {http://arxiv.org/abs/2408.02545},
+  publisher =    {arXiv},
+}
+```
 
 ## License
 
