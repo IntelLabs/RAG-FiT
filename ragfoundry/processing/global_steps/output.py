@@ -1,3 +1,5 @@
+import os
+
 from ..step import GlobalStep
 
 
@@ -6,18 +8,28 @@ class OutputData(GlobalStep):
     Simple class to output the dataset to a jsonl file.
     """
 
-    def __init__(self, prefix, **kwargs):
+    def __init__(self, prefix, filename=None, directory=None, **kwargs):
         """
         Args:
             prefix (str): Prefix for the output.
+            filename (str, optional): Name of the output file. If not provided, the output file name will be generated based on the prefix and dataset name.
+            directory (str, optional): Directory to save the output file. If not provided, the output file will be saved in the current directory.
 
-        The output name is `{prefix}-{dataset_keyname}.jsonl`.
+        The output name is `{prefix}-{dataset_keyname/filename}.jsonl` if `filename` is not provided.
         """
         super().__init__(**kwargs)
         self.prefix = prefix
+        self.filename = filename
+        self.dir = directory
 
     def process(self, dataset_name, datasets, **kwargs):
-        fname = f"{self.prefix}-{dataset_name}.jsonl"
+        if self.filename:
+            name = self.filename
+        else:
+            name = dataset_name
+        fname = f"{self.prefix}-{name}.jsonl"
+        if self.dir is not None:
+            fname = os.path.join(self.dir, fname) if self.dir else fname
         datasets[dataset_name].to_json(fname, lines=True)
 
 
