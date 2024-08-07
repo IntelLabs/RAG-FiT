@@ -78,7 +78,7 @@ plugins:
             # show_private_members: true
             # docstring_style: google
             docstring_section_style: list
-            show_source: false # don't include source code
+            show_source: true # don't include source code
             show_docstring_functions: true
             show_signature_annotations: true
             show_docstring_description: true
