@@ -6,15 +6,20 @@ from .utils import dict_hash, is_jsonable
 class BaseStep:
     """
     Class representing a step in a processing pipeline.
-    Step can be cached to prevent re-computation.
     Entry point is `__call__`.
     Users would inherit either LocalStep or GlobalStep.
+
+    Step can be cached (on by default: `cache_step=True`) to prevent re-computation.
+
+    Individual steps can disable caching if and only if they do not manipulate the dataset, as
+    re-computation of later steps is conditioned on the necessity of caching.
     """
 
     def __init__(self, **kwargs):
         self.kwargs = kwargs
         self.inputs: list[str] = kwargs.get("inputs", ["main_dataset"])
         self.step_hash = None
+        self.cache_step = True
 
         if isinstance(self.inputs, str):
             self.inputs = [self.inputs]

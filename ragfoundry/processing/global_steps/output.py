@@ -6,6 +6,8 @@ from ..step import GlobalStep
 class OutputData(GlobalStep):
     """
     Simple class to output the dataset to a jsonl file.
+
+    Caching is disabled as this step does not manipulate the dataset hence no need for caching.
     """
 
     def __init__(self, prefix, filename=None, directory=None, **kwargs):
@@ -21,6 +23,7 @@ class OutputData(GlobalStep):
         self.prefix = prefix
         self.filename = filename
         self.dir = directory
+        self.cache_step = False
 
     def process(self, dataset_name, datasets, **kwargs):
         if self.filename:
@@ -36,6 +39,8 @@ class OutputData(GlobalStep):
 class HFHubOutput(GlobalStep):
     """
     Simple class to output the dataset to Hugging Face Hub.
+
+    Caching is disabled as this step does not manipulate the dataset hence no need for caching.
     """
 
     def __init__(self, hfhub_tag, private=True, **kwargs):
@@ -47,6 +52,7 @@ class HFHubOutput(GlobalStep):
         super().__init__(**kwargs)
         self.hfhub_tag = hfhub_tag
         self.private = private
+        self.cache_step = False
 
     def process(self, dataset_name, datasets, **kwargs):
         datasets[dataset_name].push_to_hub(self.hfhub_tag, private=self.private)

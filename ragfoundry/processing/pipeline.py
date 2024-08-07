@@ -42,11 +42,9 @@ class DataPipeline:
         logging.info(f"Caching state: {self.cache}")
         self.last_update = math.inf
 
-        print(f"{steps=}")
         self.steps = [
             hydra.utils.instantiate(step, _convert_="object") for step in steps
         ]  # TODO: do it lazily to prevent OOM
-        print(f"{self.steps=}")
 
         self.inputs = inputs if isinstance(inputs, list) else [inputs]
         self.datasets = {}
@@ -135,5 +133,6 @@ class DataPipeline:
                 self.load_from_cache(cache_map)
             else:
                 step(self.datasets)
-                self.cache_step(step, i)
-                self.last_update = i
+                if step.cache_step:
+                    self.cache_step(step, i)
+                    self.last_update = i
