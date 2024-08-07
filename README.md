@@ -12,6 +12,8 @@ easily train models using parameter-efficient finetuning (PEFT), and finally can
 performance using various, RAG-specific metrics. The library is modular, workflows are customizable using configuration
 files.
 
+Comments, suggestions, issues and pull-requests are welcomed! ❤️
+
 ### Installation
 Clone locally and run:
 
