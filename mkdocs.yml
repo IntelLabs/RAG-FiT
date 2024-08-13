@@ -153,34 +153,35 @@ nav:
   - Home:
       - Home: "index.md"
       - Tutorial: "pubmed.md"
-      - Data Augmentation: "processing.md"
-      - Training: "training.md"
-      - Inference: "inference.md"
-      - Evaluation: "evaluation.md"
+      - Guide:
+          - Data Augmentation: "processing.md"
+          - Training: "training.md"
+          - Inference: "inference.md"
+          - Evaluation: "evaluation.md"
   - API:
       - Processing:
           - Step: "reference/processing/step.md"
           - Pipeline: "reference/processing/pipeline.md"
-          - Utils: "reference/processing/utils.md"
           - Dataset Loaders:
               - loaders: "reference/processing/dataset_loaders/loaders.md"
-          - Answer Processors:
-              - regex: "reference/processing/answer_processors/regex.md"
           - Local Steps:
               - Common Datasets: "reference/processing/local_steps/common_datasets.md"
               - Formatting: "reference/processing/local_steps/formatting.md"
               - Retrievers:
                   - Haystack:
                       "reference/processing/local_steps/retrievers/haystack.md"
-              - Context: "reference/processing/local_steps/context.md"
-              - Prompt Creation: "reference/processing/local_steps/prompter.md"
-              - RAFT: "reference/processing/local_steps/raft.md"
               - API:
                   - OpenAI Chat:
                       "reference/processing/local_steps/api/openai.md"
+              - Context: "reference/processing/local_steps/context.md"
+              - Prompt Creation: "reference/processing/local_steps/prompter.md"
+              - RAFT: "reference/processing/local_steps/raft.md"
           - Global Steps:
               - Sampling and Fewshot: "reference/processing/global_steps/sampling.md"
               - Output: "reference/processing/global_steps/output.md"
+          - Answer Processors:
+              - regex: "reference/processing/answer_processors/regex.md"
+          - Utils: "reference/processing/utils.md"
       - Models:
           - Transformers: "reference/models/hf.md"
           - OpenAI: "reference/models/openai_executor.md"

@@ -4,13 +4,15 @@ from ..step import LocalStep
 class TextPrompter(LocalStep):
     """
     Class for creating prompts. The input is a prompt file with placeholders, a mapping of the placeholders to the item keys, and the key to store the result.
-
-    Example: the prompt file is "prompt.txt" with the content "{query}?\n{answer}".
-    The mapping is {"query": "question", "answer": "solution"}.
-    The result key is "prompt".
     """
 
     def __init__(self, prompt_file: str, mapping: dict, output_key, **kwargs):
+        """
+        Args:
+            prompt_file (str): Path to the prompt file.
+            mapping (dict): Mapping of the placeholders in the prompt to the item keys.
+            output_key (str): Key to store the formatted prompt.
+        """
         super().__init__(**kwargs)
         self.prompt = open(prompt_file).read()
         self.mapping = mapping

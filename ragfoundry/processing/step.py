@@ -55,6 +55,9 @@ class BaseStep:
         self.process_inputs(datasets, **kwargs)
 
     def process_inputs(self, datasets, **kwargs):
+        """
+        Run the step `process` function for each dataset in `inputs`.
+        """
         for dataset_name in self.inputs:
             self.process(dataset_name, datasets, **kwargs)
 

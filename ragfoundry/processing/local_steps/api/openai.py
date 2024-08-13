@@ -14,6 +14,13 @@ class OpenAIChat(LocalStep):
     """
 
     def __init__(self, model, instruction, prompt_key, answer_key, **kwargs):
+        """
+        Args:
+            model (dict): Configuration for the OpenAIExecutor.
+            instruction (str): Path to the system instruction file.
+            prompt_key (str): Key to the prompt in the item.
+            answer_key (str): Key to store the response.
+        """
         super().__init__(**kwargs)
 
         self.model = OpenAIExecutor(**model)
