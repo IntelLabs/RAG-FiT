@@ -34,10 +34,12 @@ class DocumentsJoiner(LocalStep):
 
     def __init__(self, docs_key, k=None, join_string="\n", **kwargs):
         """
+        Join `k` documents in `docs_key` into a string using `join_string` and save back to `docs_key`.
+
         Args:
             docs_key (str): Key to the documents in the item.
             k (int, optional): Number of documents to select or take all. Defaults to None.
-            join_string (str): String to join the documents. Defaults to "\n".
+            join_string (str): String to join the documents. Defaults to "\\n".
         """
         super().__init__(**kwargs)
         self.docs_key = docs_key

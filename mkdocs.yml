@@ -61,7 +61,7 @@ theme:
 extra_css:
   - stylesheets/extra.css
 plugins:
-  - blog
+  # - blog
   - search:
       separator:
         '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
@@ -152,6 +152,7 @@ extra:
 nav:
   - Home:
       - Home: "index.md"
+      - Tutorial: "pubmed.md"
       - Data Augmentation: "processing.md"
       - Training: "training.md"
       - Inference: "inference.md"

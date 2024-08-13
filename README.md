@@ -21,6 +21,10 @@ Clone locally and run:
 pip install -r requirements.txt
 ```
 
+### Quick Start
+
+For a simple, end-to-end example, see the [PubmedQA Tutorial](./docs/pubmed.md).
+
 ## Overview
 
 The RAG Foundry framework facilitates fast prototyping and experimentation with various RAG settings and configurations,

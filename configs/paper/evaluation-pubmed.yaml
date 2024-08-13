@@ -1,0 +1,25 @@
+answer_processor:
+    _target_: ragfoundry.processing.answer_processors.regex.RegexAnswer
+    capture_pattern:
+    stopping_pattern:
+
+metrics:
+    - _target_: ragfoundry.evaluation.metrics.Classification
+      mapping:
+        "yes": 1
+        "no": 0
+        "maybe": 2
+      else_value: 2
+
+key_names:
+    generated: text
+    label: answers
+    query: query
+
+results_file: evaluation-pubmed-rag.yaml
+generated_file: pubmed-rag-test-generated.jsonl
+data_file: pubmed-rag-test.jsonl
+limit:
+use_wandb:
+experiment:
+wandb_entity:

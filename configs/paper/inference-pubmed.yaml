@@ -1,0 +1,27 @@
+model:
+    _target_: ragfoundry.models.hf.HFInference
+    model_name_or_path: microsoft/Phi-3-mini-128k-instruct
+    load_in_4bit: false
+    load_in_8bit: true
+    device_map: auto
+    torch_dtype:
+    trust_remote_code: true
+    instruction: ragfoundry/processing/prompts/prompt_instructions/qa-yes-no.txt
+    instruct_in_prompt: false
+    lora_path: ./trained_model/checkpoint
+    generation:
+        do_sample: false
+        max_new_tokens: 50
+        max_length:
+        temperature:
+        top_k:
+        top_p:
+        return_full_text: false
+
+data_file: pubmed-rag-test.jsonl
+generated_file: pubmed-rag-test-generated.jsonl
+input_key: prompt
+generation_key: output
+target_key: answers
+limit:
+
