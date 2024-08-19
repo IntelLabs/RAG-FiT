@@ -26,7 +26,7 @@ class VLLMInference:
         llm_params: Dict = {},
         generation: Dict = {},
     ):
-        check_package_installed("vllm")
+        check_package_installed("vllm", "please refer to vLLM website for installation instructions, or run: pip install vllm")
         self.sampling_params = SamplingParams(**generation)
         self.llm = LLM(model=model_name_or_path, tensor_parallel_size=num_gpus, **llm_params)
 
