@@ -190,4 +190,5 @@ nav:
           - Base: "reference/evaluation/base.md"
           - Metrics: "reference/evaluation/metrics.md"
           - DeepEval: "reference/evaluation/deep.md"
+      - Utils: "reference/utils.md"
 
