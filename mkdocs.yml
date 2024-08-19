@@ -177,6 +177,7 @@ nav:
               - Prompt Creation: "reference/processing/local_steps/prompter.md"
               - RAFT: "reference/processing/local_steps/raft.md"
           - Global Steps:
+              - Aggregation and merging: "reference/processing/global_steps/aggregation.md"
               - Sampling and Fewshot: "reference/processing/global_steps/sampling.md"
               - Output: "reference/processing/global_steps/output.md"
           - Answer Processors:
