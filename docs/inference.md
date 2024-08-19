@@ -89,3 +89,35 @@ python inference.py -cp configs/paper -cn inference-asqa    \
        model.lora_path=./path/to/lora/checkpoint
 ```
 
+## Running Inference with vLLM Backend
+
+To achieve potentially faster inference speeds, you can run inference using the vLLM backend. The functionality of the inference process remains similar to the previously defined process, with the addition of extra arguments that can be used with the vLLM engine.
+
+Here is an example of an inference configuration using the vLLM engine:
+
+```yaml
+model:
+    _target_: ragfoundry.models.vllm.VLLMInference
+    model_name_or_path: "facebook/opt-125m"
+    llm_params:
+        dtype: auto
+    generation:
+        temperature: 0.5
+        top_p: 0.95
+        seed: 1911
+    num_gpus: 1
+
+data_file: my-processed-data.jsnol
+generated_file: model-predictions.jsonl
+input_key: prompt
+generation_key: output
+target_key: answers
+limit:
+```
+
+The main differences in this configuration are as follows:
+
+- `ragfoundry.models.vllm.VLLMInference`: This class is used to utilize the vLLM-based engine.
+- `llm_params`: These are optional vLLM arguments that can be passed to the LLM class.
+- `generation`: These are optional arguments that define the generation policy. The supported arguments are compatible with vLLM's `SamplingParams`.
+- `num_gpus`: This specifies the number of GPUs to use during inference.

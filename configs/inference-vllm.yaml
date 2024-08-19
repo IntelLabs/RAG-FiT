@@ -1,0 +1,17 @@
+model:
+    _target_: ragfoundry.models.vllm.VLLMInference
+    model_name_or_path: "facebook/opt-125m"
+    llm_params:
+        dtype: auto
+    generation:
+        temperature: 0.5
+        top_p: 0.95
+        seed: 1911
+    num_gpus: 1
+
+data_file: my-processed-data.jsnol
+generated_file: model-predictions.jsonl
+input_key: prompt
+generation_key: output
+target_key: answers
+limit:

@@ -185,6 +185,7 @@ nav:
       - Models:
           - Transformers: "reference/models/hf.md"
           - OpenAI: "reference/models/openai_executor.md"
+          - vLLM: "reference/models/vllm.md"
       - Evaluation:
           - Base: "reference/evaluation/base.md"
           - Metrics: "reference/evaluation/metrics.md"
