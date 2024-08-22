@@ -1,11 +1,10 @@
 import logging
 from pathlib import Path
 from typing import Dict
-from vllm import LLM, SamplingParams
-from transformers import AutoTokenizer, AutoConfig
+
+from transformers import AutoConfig, AutoTokenizer
 
 from ragfoundry.utils import check_package_installed
-
 
 logger = logging.getLogger(__name__)
 
@@ -38,6 +37,8 @@ class VLLMInference:
             "vllm",
             "please refer to vLLM website for installation instructions, or run: pip install vllm",
         )
+        from vllm import LLM, SamplingParams
+
         logger.info(f"Using the following instruction: {self.instruction}")
 
         self.instruct_in_prompt = instruct_in_prompt
@@ -45,7 +46,9 @@ class VLLMInference:
         self.instruction = open(instruction).read()
 
         self.sampling_params = SamplingParams(**generation)
-        self.llm = LLM(model=model_name_or_path, tensor_parallel_size=num_gpus, **llm_params)
+        self.llm = LLM(
+            model=model_name_or_path, tensor_parallel_size=num_gpus, **llm_params
+        )
         if self.instruct_in_prompt:
             self.tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
             self.config = AutoConfig.from_pretrained(self.model_name)
@@ -68,7 +71,9 @@ class VLLMInference:
                 tokenize=False,
                 add_generation_prompt=True,
                 truncation=True,
-                max_length=(self.config.max_position_embeddings - self.sampling_param.max_tokens),
+                max_length=(
+                    self.config.max_position_embeddings - self.sampling_param.max_tokens
+                ),
             )
 
         output = self.llm.generate(prompt, self.sampling_params)

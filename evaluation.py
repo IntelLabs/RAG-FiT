@@ -17,9 +17,8 @@ def setup_wandb(args: dict):
     """
     WANDB integration for tracking evaluations.
     """
-    from wandb.wandb_run import Run
-
     import wandb
+    from wandb.wandb_run import Run
 
     env = {key: os.getenv(key) for key in os.environ}
     run: Run = wandb.init(

@@ -3,13 +3,12 @@ import os
 from pathlib import Path
 
 import hydra
+import wandb
 from datasets import load_dataset
 from hydra.utils import to_absolute_path
 from omegaconf import OmegaConf
 from transformers import TrainingArguments
 from trl import DataCollatorForCompletionOnlyLM, SFTTrainer
-
-import wandb
 
 logger = logging.getLogger(__name__)
 
