@@ -6,8 +6,8 @@ site_description:
   Small, minimalistic and modular library to improve and measure LLMs RAG ability, using prompt-engineering and fine-tuning.
 
 # Repository
-# repo_url: https://github.com/IntelLabs/RAGFoundry
-# repo_name: IntelLabs/RAGFoundry
+repo_url: https://github.com/IntelLabs/RAGFoundry
+repo_name: IntelLabs/RAGFoundry
 
 # theme
 theme:
@@ -57,7 +57,7 @@ theme:
     - toc.follow
     # - toc.integrate
   icon:
-    repo: fontawesome/brands/github
+    repo: simple/intel
 extra_css:
   - stylesheets/extra.css
 plugins:
