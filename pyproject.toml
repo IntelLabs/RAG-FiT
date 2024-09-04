@@ -27,7 +27,7 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/IntelLabs/RAGFoundry"
-Documentation = "https://readthedocs.org"
+Documentation = "https://intellabs.github.io/RAGFoundry/"
 
 [tool.setuptools]
 packages = ["ragfoundry"]
