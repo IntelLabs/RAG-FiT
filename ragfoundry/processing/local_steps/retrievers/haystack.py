@@ -1,5 +1,3 @@
-from haystack import Pipeline
-
 from ...step import LocalStep
 
 
@@ -10,6 +8,7 @@ class HaystackRetriever(LocalStep):
 
     def __init__(self, pipeline_or_yaml_path, docs_key, query_key, **kwargs):
         super().__init__(**kwargs)
+        from haystack import Pipeline
         if isinstance(pipeline_or_yaml_path, str):
             self.pipe = Pipeline.load(open(pipeline_or_yaml_path))
         else:

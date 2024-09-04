@@ -2,9 +2,6 @@ import re
 import string
 from collections import Counter, defaultdict
 
-import evaluate
-import sklearn
-
 from .base import MetricBase
 
 
@@ -19,6 +16,7 @@ class HFEvaluate(MetricBase):
             key_names (dict): A dictionary containing the field names.
             metric_names (list[str]): A list of metric names.
         """
+        import evaluate
         super().__init__(key_names, **kwargs)
         self.metric_names = metric_names
         self.metric = evaluate.combine(metric_names)
@@ -63,6 +61,7 @@ class Classification(MetricBase):
     def __init__(
         self, key_names: dict, mapping: dict, else_value: int = 2, **kwargs
     ) -> None:
+        import sklearn
         super().__init__(key_names, **kwargs)
         self.local = False
         self.mapping = mapping

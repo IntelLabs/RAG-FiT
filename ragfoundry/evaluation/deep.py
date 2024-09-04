@@ -1,9 +1,5 @@
 import logging
 import math
-
-from deepeval.test_case import LLMTestCase
-from langchain_openai import AzureChatOpenAI
-
 from .base import MetricBase
 
 
@@ -23,6 +19,7 @@ class DeepEvalBase(MetricBase):
         **kwargs,
     ):
         super().__init__(key_names, **kwargs)
+        from langchain_openai import AzureChatOpenAI
         self.local = True
         self.query = self.key_names["query"]
         self.context = self.key_names["context"]
@@ -45,6 +42,7 @@ class Faithfulness(DeepEvalBase):
 
     def __init__(self, key_names: dict, threshold=0.3, **kwargs):
         super().__init__(key_names, **kwargs)
+        from deepeval.test_case import LLMTestCase
         from deepeval.metrics.ragas import RAGASFaithfulnessMetric
 
         self.metric = RAGASFaithfulnessMetric(threshold=threshold, model=self.model)
@@ -78,6 +76,7 @@ class Relevancy(DeepEvalBase):
 
     def __init__(self, key_names: dict, embeddings, threshold=0.3, **kwargs):
         super().__init__(key_names, **kwargs)
+        from deepeval.test_case import LLMTestCase
         from deepeval.metrics.ragas import RAGASAnswerRelevancyMetric
         from ragas.embeddings import HuggingfaceEmbeddings
 
@@ -116,6 +115,7 @@ class Hallucination(DeepEvalBase):
 
     def __init__(self, key_names: dict, threshold=0.5, **kwargs):
         super().__init__(key_names, **kwargs)
+        from deepeval.test_case import LLMTestCase
         from deepeval.metrics import HallucinationMetric
 
         self.metric = HallucinationMetric(
