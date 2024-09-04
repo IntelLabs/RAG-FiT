@@ -1,23 +1,17 @@
 repos:
-  - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 24.4.2
-    hooks:
-      - id: black
-        args: ["-l", "90"]
-  - repo: https://github.com/pycqa/isort
-    rev: 5.13.2
-    hooks:
-      - id: isort
-  - repo: https://github.com/pycqa/flake8
-    rev: 7.1.0
-    hooks:
-      - id: flake8
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0
     hooks:
       - id: trailing-whitespace
       - id: check-docstring-first
       - id: check-added-large-files
+      - id: check-toml
       - id: check-yaml
         args: ["--unsafe", "mkdocs.yml"]
       - id: check-merge-conflict
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.3
+    hooks:
+      - id: ruff
+        args: ["--fix"]
+      - id: ruff-format
