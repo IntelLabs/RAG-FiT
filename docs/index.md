@@ -15,10 +15,16 @@ files.
 Comments, suggestions, issues and pull-requests are welcomed! ❤️
 
 ### Installation
-Clone locally and run:
+Clone and run:
 
 ```sh
-pip install -r requirements.txt
+pip install -e .
+```
+
+Optional packages can be installed:
+```sh
+pip install -e .[haystack]
+pip install -e .[deepeval]
 ```
 
 ### Quick Start

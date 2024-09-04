@@ -2,9 +2,6 @@ import re
 import string
 from collections import Counter, defaultdict
 
-import evaluate
-import sklearn
-
 from .base import MetricBase
 
 
@@ -19,6 +16,8 @@ class HFEvaluate(MetricBase):
             key_names (dict): A dictionary containing the field names.
             metric_names (list[str]): A list of metric names.
         """
+        import evaluate
+
         super().__init__(key_names, **kwargs)
         self.metric_names = metric_names
         self.metric = evaluate.combine(metric_names)
@@ -63,10 +62,14 @@ class Classification(MetricBase):
     def __init__(
         self, key_names: dict, mapping: dict, else_value: int = 2, **kwargs
     ) -> None:
+        from sklearn.metrics import accuracy_score, precision_recall_fscore_support
+
         super().__init__(key_names, **kwargs)
         self.local = False
         self.mapping = mapping
         self.else_value = else_value
+        self.precision_recall_fn = precision_recall_fscore_support
+        self.accuracy_fn = accuracy_score
 
     def measure(self, example: dict):
         inputs = example[self.field]
@@ -83,10 +86,10 @@ class Classification(MetricBase):
             self.mapping.get(normalize_text(t).strip(), self.else_value) for t in targets
         ]
 
-        precision, recall, f1, _ = sklearn.metrics.precision_recall_fscore_support(
+        precision, recall, f1, _ = self.precision_recall_fn(
             targets, inputs, average="macro"
         )
-        accuracy = sklearn.metrics.accuracy_score(targets, inputs)
+        accuracy = self.accuracy_fn(targets, inputs)
 
         return {
             "accuracy": float(accuracy),

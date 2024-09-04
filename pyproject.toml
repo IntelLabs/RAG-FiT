@@ -1,0 +1,51 @@
+[project]
+name = "ragfoundry"
+version = "1.1.1"
+description = "Framework for enhancing LLMs for RAG tasks using fine-tuning."
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.10"
+dependencies = [
+    "bert-score>=0.3.13",
+    "bitsandbytes==0.42.0",
+    "datasets==2.16.1",
+    "evaluate==0.4.1",
+    "hydra-core==1.3.2",
+    "nltk==3.9",
+    "openai==1.23.3",
+    "peft==0.11.1",
+    "pyyaml==6.0.1",
+    "rouge-score==0.1.2",
+    "sentence-transformers==2.4.0",
+    "sentencepiece==0.2.0",
+    "torch==2.2.0",
+    "transformers==4.42.3",
+    "trl==0.8.6",
+    "wandb==0.16.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/IntelLabs/RAGFoundry"
+Documentation = "https://intellabs.github.io/RAGFoundry/"
+
+[tool.setuptools]
+packages = ["ragfoundry"]
+
+[project.optional-dependencies]
+deepeval = [
+    "deepeval==0.21.73",
+]
+haystack = [
+    "haystack-ai==2.3.1",
+    "qdrant-haystack>=5.0.0",
+]
+docs = [
+    "mkdocs-gen-files>=0.5.0",
+    "mkdocs-material-extensions>=1.3.1",
+    "mkdocs-material>=9.5.30",
+    "mkdocstrings-python-legacy>=0.2.3",
+    "mkdocstrings-python>=1.10.7",
+    "mkdocstrings>=0.25.2",
+    "pymdown-extensions>=10.9",
+]
+
