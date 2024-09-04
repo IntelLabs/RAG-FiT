@@ -1,0 +1,12 @@
+[project]
+name = "ragfoundry"
+version = "1.1.1"
+description = "Framework for enhancing LLMs for RAG tasks using fine-tuning."
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.10"
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/IntelLabs/RAGFoundry"
+Documentation = "https://readthedocs.org"
