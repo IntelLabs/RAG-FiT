@@ -29,6 +29,9 @@ dependencies = [
 Homepage = "https://github.com/IntelLabs/RAGFoundry"
 Documentation = "https://readthedocs.org"
 
+[tool.setuptools]
+packages = ["ragfoundry"]
+
 [project.optional-dependencies]
 deepeval = [
     "deepeval==0.21.73",
@@ -46,3 +49,4 @@ docs = [
     "mkdocstrings>=0.25.2",
     "pymdown-extensions>=10.9",
 ]
+
