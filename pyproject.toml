@@ -14,7 +14,6 @@ dependencies = [
     "nltk==3.9",
     "openai==1.23.3",
     "peft==0.11.1",
-    "pre-commit==3.6.0",
     "pyyaml==6.0.1",
     "rouge-score==0.1.2",
     "sentence-transformers==2.4.0",
