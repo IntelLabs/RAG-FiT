@@ -5,7 +5,7 @@
 Install python packages required for building mkdocs documentation website.
 
 ``` sh
-pip install -e .[docs]
+pip install -r docs/requirements.txt
 ```
 
 ## Adding new content

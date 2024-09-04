@@ -39,13 +39,3 @@ haystack = [
     "haystack-ai==2.3.1",
     "qdrant-haystack>=5.0.0",
 ]
-docs = [
-    "mkdocs-gen-files>=0.5.0",
-    "mkdocs-material-extensions>=1.3.1",
-    "mkdocs-material>=9.5.30",
-    "mkdocstrings-python-legacy>=0.2.3",
-    "mkdocstrings-python>=1.10.7",
-    "mkdocstrings>=0.25.2",
-    "pymdown-extensions>=10.9",
-]
-
