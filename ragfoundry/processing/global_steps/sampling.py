@@ -101,5 +101,5 @@ class FewShot(Sampler):
             output_key=output_key,
             input_key=None,
             input_dataset=input_dataset,
-            **kwargs
+            **kwargs,
         )

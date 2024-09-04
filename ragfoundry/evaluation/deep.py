@@ -1,5 +1,6 @@
 import logging
 import math
+
 from .base import MetricBase
 
 
@@ -19,10 +20,13 @@ class DeepEvalBase(MetricBase):
         **kwargs,
     ):
         super().__init__(key_names, **kwargs)
+        from deepeval.test_case import LLMTestCase
         from langchain_openai import AzureChatOpenAI
+
         self.local = True
         self.query = self.key_names["query"]
         self.context = self.key_names["context"]
+        self.test_case = LLMTestCase
 
         self.model = AzureChatOpenAI(
             api_version=api_version,
@@ -42,7 +46,6 @@ class Faithfulness(DeepEvalBase):
 
     def __init__(self, key_names: dict, threshold=0.3, **kwargs):
         super().__init__(key_names, **kwargs)
-        from deepeval.test_case import LLMTestCase
         from deepeval.metrics.ragas import RAGASFaithfulnessMetric
 
         self.metric = RAGASFaithfulnessMetric(threshold=threshold, model=self.model)
@@ -52,7 +55,7 @@ class Faithfulness(DeepEvalBase):
         output = example[self.field]
         context = example[self.context]
 
-        test_case = LLMTestCase(
+        test_case = self.test_case(
             input=query,
             actual_output=output or "No answer.",
             retrieval_context=[context] if isinstance(context, str) else context,
@@ -76,7 +79,6 @@ class Relevancy(DeepEvalBase):
 
     def __init__(self, key_names: dict, embeddings, threshold=0.3, **kwargs):
         super().__init__(key_names, **kwargs)
-        from deepeval.test_case import LLMTestCase
         from deepeval.metrics.ragas import RAGASAnswerRelevancyMetric
         from ragas.embeddings import HuggingfaceEmbeddings
 
@@ -91,7 +93,7 @@ class Relevancy(DeepEvalBase):
         output = example[self.field]
         context = example[self.context]
 
-        test_case = LLMTestCase(
+        test_case = self.test_case(
             input=query,
             actual_output=output or "No answer.",
             retrieval_context=[context] if isinstance(context, str) else context,
@@ -115,7 +117,6 @@ class Hallucination(DeepEvalBase):
 
     def __init__(self, key_names: dict, threshold=0.5, **kwargs):
         super().__init__(key_names, **kwargs)
-        from deepeval.test_case import LLMTestCase
         from deepeval.metrics import HallucinationMetric
 
         self.metric = HallucinationMetric(
@@ -126,7 +127,7 @@ class Hallucination(DeepEvalBase):
         output = example[self.field]
         context = example[self.context]
 
-        test_case = LLMTestCase(
+        test_case = self.test_case(
             input="",
             actual_output=output,
             context=[context] if isinstance(context, str) else context,
