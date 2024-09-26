@@ -25,8 +25,8 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/IntelLabs/RAGFoundry"
-Documentation = "https://intellabs.github.io/RAGFoundry/"
+Homepage = "https://github.com/IntelLabs/RAG-FiT"
+Documentation = "https://intellabs.github.io/RAG-FiT/"
 
 [tool.setuptools]
 packages = ["ragfit"]
