@@ -1,1 +1,1 @@
-::: ragfoundry.processing.global_steps.aggregation
+::: ragfit.processing.global_steps.aggregation

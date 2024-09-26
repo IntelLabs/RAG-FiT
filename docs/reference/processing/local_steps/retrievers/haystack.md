@@ -1,1 +1,1 @@
-::: ragfoundry.processing.local_steps.retrievers.haystack
+::: ragfit.processing.local_steps.retrievers.haystack

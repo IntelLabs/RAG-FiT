@@ -3,7 +3,7 @@ import logging
 import hydra
 from omegaconf import OmegaConf
 
-from ragfoundry.processing.pipeline import DataPipeline
+from ragfit.processing.pipeline import DataPipeline
 
 logger = logging.getLogger(__name__)
 

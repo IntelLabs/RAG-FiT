@@ -8,14 +8,14 @@ It is simple in nature, described by the following configuration:
 
 ```yaml
 model:
-    _target_: ragfoundry.models.hf.HFInference
+    _target_: ragfit.models.hf.HFInference
     model_name_or_path: microsoft/Phi-3-mini-128k-instruct
     load_in_4bit: false
     load_in_8bit: true
     device_map: auto
     torch_dtype:
     trust_remote_code: true
-    instruction: ragfoundry/processing/prompts/prompt_instructions/qa.txt
+    instruction: ragfit/processing/prompts/prompt_instructions/qa.txt
     instruct_in_prompt: false
     lora_path:
     generation:
@@ -97,7 +97,7 @@ Here is an example of an inference configuration using the vLLM engine:
 
 ```yaml
 model:
-    _target_: ragfoundry.models.vllm.VLLMInference
+    _target_: ragfit.models.vllm.VLLMInference
     model_name_or_path: "facebook/opt-125m"
     llm_params:
         dtype: auto
@@ -117,7 +117,7 @@ limit:
 
 The main differences in this configuration are as follows:
 
-- `ragfoundry.models.vllm.VLLMInference`: This class is used to utilize the vLLM-based engine.
+- `ragfit.models.vllm.VLLMInference`: This class is used to utilize the vLLM-based engine.
 - `llm_params`: These are optional vLLM arguments that can be passed to the LLM class.
 - `generation`: These are optional arguments that define the generation policy. The supported arguments are compatible with vLLM's `SamplingParams`.
 - `num_gpus`: This specifies the number of GPUs to use during inference.

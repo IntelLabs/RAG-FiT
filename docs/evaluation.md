@@ -16,7 +16,7 @@ The configuration contains the following section:
 
 ```yaml
 answer_processor:
-  _target_: ragfoundry.processing.answer_processors.regex.RegexAnswer
+  _target_: ragfit.processing.answer_processors.regex.RegexAnswer
   capture_pattern:          # "<ANSWER>: (.*)"
   stopping_pattern:         # "[,.;]"
 ```
@@ -32,11 +32,11 @@ instruction) will score higher.
 Next is a list of metrics; each one is a python class:
 ```yaml
 metrics:
-  - _target_: ragfoundry.evaluation.metrics.HFEvaluate
+  - _target_: ragfit.evaluation.metrics.HFEvaluate
     metric_names: [rouge]
-  - _target_: ragfoundry.evaluation.metrics.EM
-  - _target_: ragfoundry.evaluation.metrics.F1
-  - _target_: ragfoundry.evaluation.metrics.BERTScore
+  - _target_: ragfit.evaluation.metrics.EM
+  - _target_: ragfit.evaluation.metrics.F1
+  - _target_: ragfit.evaluation.metrics.BERTScore
     model: microsoft/deberta-large-mnli
 ```
 
@@ -78,12 +78,12 @@ configuration looks like this:
 
 ```yaml
 answer_processor:
-    _target_: ragfoundry.processing.answer_processors.regex.RegexAnswer
+    _target_: ragfit.processing.answer_processors.regex.RegexAnswer
     capture_pattern: "<ANSWER>: (.*)"
     stopping_pattern:
 
 metrics:
-    - _target_: ragfoundry.evaluation.metrics.StringEM
+    - _target_: ragfit.evaluation.metrics.StringEM
 
 key_names:
     generated: text
@@ -144,11 +144,11 @@ The different in configuration is in the list of metrics and keywords:
 
 ```yaml
 metrics:
-    - _target_: ragfoundry.evaluation.deep.Faithfulness
+    - _target_: ragfit.evaluation.deep.Faithfulness
       azure_endpoint: azure.endpoint.com
       azure_deployment: GPT-4-32k-Bot
       api_version: 2024-05-01-preview
-    - _target_: ragfoundry.evaluation.deep.Relevancy
+    - _target_: ragfit.evaluation.deep.Relevancy
       azure_endpoint: azure.endpoint.com
       azure_deployment: GPT-4-32k-Bot
       api_version: 2024-05-01-preview

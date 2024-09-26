@@ -1,1 +1,1 @@
-::: ragfoundry.models.openai_executor
+::: ragfit.models.openai_executor

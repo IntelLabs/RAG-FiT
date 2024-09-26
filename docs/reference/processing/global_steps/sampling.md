@@ -1,1 +1,1 @@
-::: ragfoundry.processing.global_steps.sampling
+::: ragfit.processing.global_steps.sampling

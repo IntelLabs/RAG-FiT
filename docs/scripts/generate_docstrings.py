@@ -6,7 +6,7 @@ import mkdocs_gen_files
 
 nav = mkdocs_gen_files.Nav()
 
-src = Path(__file__).parent.parent.parent / "ragfoundry"
+src = Path(__file__).parent.parent.parent / "ragfit"
 excluded = ["__init__.py", "__pycache__"]
 
 for path in sorted(src.rglob("*.py")):
@@ -33,7 +33,7 @@ for path in sorted(src.rglob("*.py")):
     print(f"Writing to {full_doc_path}")
     with mkdocs_gen_files.open(full_doc_path, "w") as fd:
         ident = ".".join(parts)
-        fd.write(f"::: ragfoundry.{ident}")
+        fd.write(f"::: ragfit.{ident}")
 
     mkdocs_gen_files.set_edit_path(full_doc_path, path)
 

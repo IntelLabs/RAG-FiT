@@ -4,7 +4,7 @@ from typing import Dict
 
 from transformers import AutoConfig, AutoTokenizer
 
-from ragfoundry.utils import check_package_installed
+from ragfit.utils import check_package_installed
 
 logger = logging.getLogger(__name__)
 

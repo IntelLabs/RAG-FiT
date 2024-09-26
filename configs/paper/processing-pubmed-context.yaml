@@ -2,34 +2,34 @@ name: pubmed_rag
 cache: true
 output_path: .
 steps:
-    - _target_: ragfoundry.processing.dataset_loaders.loaders.HFLoader
+    - _target_: ragfit.processing.dataset_loaders.loaders.HFLoader
       inputs: train
       dataset_config:
             path: bigbio/pubmed_qa
             split: train
 
-    - _target_: ragfoundry.processing.dataset_loaders.loaders.HFLoader
+    - _target_: ragfit.processing.dataset_loaders.loaders.HFLoader
       inputs: test
       dataset_config:
             path: bigbio/pubmed_qa
             name: pubmed_qa_labeled_fold0_source
             split: test
 
-    - _target_: ragfoundry.processing.global_steps.sampling.ShuffleSelect
+    - _target_: ragfit.processing.global_steps.sampling.ShuffleSelect
       inputs: train
       limit: 50000
 
-    - _target_: ragfoundry.processing.local_steps.common_datasets.PubMed
+    - _target_: ragfit.processing.local_steps.common_datasets.PubMed
       inputs: [train, test]
 
-    - _target_: ragfoundry.processing.local_steps.context.DocumentsJoiner
+    - _target_: ragfit.processing.local_steps.context.DocumentsJoiner
       inputs: [train, test]
       docs_key: positive_passages
       k: 5
 
-    - _target_: ragfoundry.processing.local_steps.prompter.TextPrompter
+    - _target_: ragfit.processing.local_steps.prompter.TextPrompter
       inputs: [train, test]
-      prompt_file: ragfoundry/processing/prompts/qa.txt
+      prompt_file: ragfit/processing/prompts/qa.txt
       output_key: prompt
       mapping:
             question: query

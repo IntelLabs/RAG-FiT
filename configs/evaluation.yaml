@@ -1,26 +1,26 @@
 answer_processor:
-  _target_: ragfoundry.processing.answer_processors.regex.RegexAnswer
+  _target_: ragfit.processing.answer_processors.regex.RegexAnswer
   capture_pattern:          # "<ANSWER>: (.*)"
   stopping_pattern:         # "[,.;]"
 
 metrics:
-  - _target_: ragfoundry.evaluation.metrics.HFEvaluate
+  - _target_: ragfit.evaluation.metrics.HFEvaluate
     metric_names: [rouge]
-  - _target_: ragfoundry.evaluation.metrics.EM
-  - _target_: ragfoundry.evaluation.metrics.StringEM
-  - _target_: ragfoundry.evaluation.metrics.F1
-  - _target_: ragfoundry.evaluation.metrics.BERTScore
+  - _target_: ragfit.evaluation.metrics.EM
+  - _target_: ragfit.evaluation.metrics.StringEM
+  - _target_: ragfit.evaluation.metrics.F1
+  - _target_: ragfit.evaluation.metrics.BERTScore
     model: microsoft/deberta-large-mnli
-  - _target_: ragfoundry.evaluation.metrics.Semantic
+  - _target_: ragfit.evaluation.metrics.Semantic
     model: vectara/hallucination_evaluation_model
   - _target_: src.evaluation.metrics.Classification
     mapping: {"yes": 1, "no": 0, "maybe": 2}
     else_value: 2
-  - _target_: ragfoundry.evaluation.deep.Faithfulness
+  - _target_: ragfit.evaluation.deep.Faithfulness
     azure_endpoint:
     azure_deployment:
     api_version:
-  - _target_: ragfoundry.evaluation.deep.Relevancy
+  - _target_: ragfit.evaluation.deep.Relevancy
     azure_endpoint:
     azure_deployment:
     api_version:

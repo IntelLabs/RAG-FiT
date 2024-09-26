@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="assets/rag_foundry.png" width="500"/>
+    <img src="assets/rag_fit.png" width="400"/>
 </div>
 
 ----------

@@ -2,18 +2,18 @@ name: asqa_cot_dev
 cache: false
 output_path: .
 steps:
-    - _target_: ragfoundry.processing.dataset_loaders.loaders.LocalLoader
+    - _target_: ragfit.processing.dataset_loaders.loaders.LocalLoader
       inputs: dev
       filename: asqa-dev.jsonl
 
-    - _target_: ragfoundry.processing.local_steps.context.DocumentsJoiner
+    - _target_: ragfit.processing.local_steps.context.DocumentsJoiner
       inputs: dev
       docs_key: positive_passages
       k: 5
 
-    - _target_: ragfoundry.processing.local_steps.prompter.TextPrompter
+    - _target_: ragfit.processing.local_steps.prompter.TextPrompter
       inputs: dev
-      prompt_file: ragfoundry/processing/prompts/cot.txt
+      prompt_file: ragfit/processing/prompts/cot.txt
       output_key: prompt
       mapping:
             question: query

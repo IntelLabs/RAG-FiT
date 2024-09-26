@@ -30,13 +30,13 @@ The first step would be to augment the entire dataset (train, dev) with relevant
 [processing-asqa-retrieval.yaml](../configs/paper/processing-asqa-retrieval.yaml). Let's focus on the different steps:
 
 ```yaml
-- _target_: ragfoundry.processing.dataset_loaders.loaders.HFLoader
+- _target_: ragfit.processing.dataset_loaders.loaders.HFLoader
   inputs: train
   dataset_config:
         path: din0s/asqa
         split: train
 
-- _target_: ragfoundry.processing.dataset_loaders.loaders.HFLoader
+- _target_: ragfit.processing.dataset_loaders.loaders.HFLoader
   inputs: dev
   dataset_config:
         path: din0s/asqa
@@ -47,7 +47,7 @@ We load the train and dev splits, to be used in the pipeline; they will be refer
 step.
 
 ```yaml
-- _target_: ragfoundry.processing.local_steps.common_datasets.ASQA
+- _target_: ragfit.processing.local_steps.common_datasets.ASQA
   inputs: [train, dev]
 ```
 We do some minimal processing, related to ASQA, namely column renaming, collecting the short and long answers and
@@ -58,7 +58,7 @@ Notice the `inputs` keyword can accept a list of strings, meaning the step will 
 
 ```yaml
 - _target_:
-        ragfoundry.processing.local_steps.retrievers.haystack.HaystackRetriever
+        ragfit.processing.local_steps.retrievers.haystack.HaystackRetriever
   inputs: [train, dev]
   pipeline_or_yaml_path: ./configs/external/haystack/qdrant.yaml
   docs_key: positive_passages
@@ -74,7 +74,7 @@ The retrieval step will store the most relevant documents (k=5) in the `docs_key
 `query_key`.
 
 ```yaml
-- _target_: ragfoundry.processing.local_steps.context.ContextHandler
+- _target_: ragfit.processing.local_steps.context.ContextHandler
   inputs: [train, dev]
   docs_key: positive_passages
 ```
@@ -83,7 +83,7 @@ these into a single string for every document. This step may be unnecessary, dep
 format.
 
 ```yaml
-- _target_: ragfoundry.processing.global_steps.sampling.Sampler
+- _target_: ragfit.processing.global_steps.sampling.Sampler
   inputs: [train, dev]
   k: 1
   input_key: positive_passages
@@ -119,13 +119,13 @@ deal with the prompt generation.
 These are the interesting steps:
 
 ```yaml
-- _target_: ragfoundry.processing.dataset_loaders.loaders.LocalLoader
+- _target_: ragfit.processing.dataset_loaders.loaders.LocalLoader
   inputs: dev
   filename: asqa-dev.jsonl
 
-- _target_: ragfoundry.processing.local_steps.prompter.TextPrompter
+- _target_: ragfit.processing.local_steps.prompter.TextPrompter
   inputs: dev
-  prompt_file: ragfoundry/processing/prompts/qa-short.txt
+  prompt_file: ragfit/processing/prompts/qa-short.txt
   output_key: prompt
   mapping:
         query: query
@@ -134,7 +134,7 @@ These are the interesting steps:
 We load the locally retrieval-augmented files we generated in the previous section.
 
 The `TextPrompter` populates a template file containing placeholders in python format, see the [short
-template](../ragfoundry/processing/prompts/qa-short.txt). The step replace the placeholders with variables using a provided
+template](../ragfit/processing/prompts/qa-short.txt). The step replace the placeholders with variables using a provided
 mapping. The result is a string, saved in a keyword called `outputs_key`.
 
 To run this process:
@@ -148,14 +148,14 @@ Preparing for configurations (1) and (2), we want to augment the examples with t
 first step.
 
 ```yaml
-- _target_: ragfoundry.processing.local_steps.context.DocumentsJoiner
+- _target_: ragfit.processing.local_steps.context.DocumentsJoiner
   inputs: [train, dev]
   docs_key: positive_passages
   k: 5
 
-- _target_: ragfoundry.processing.local_steps.prompter.TextPrompter
+- _target_: ragfit.processing.local_steps.prompter.TextPrompter
   inputs: [train, dev]
-  prompt_file: ragfoundry/processing/prompts/qa.txt
+  prompt_file: ragfit/processing/prompts/qa.txt
   output_key: prompt
   mapping:
         question: query
@@ -176,9 +176,9 @@ We prepare a dev set with CoT reasoning prompt. The configuration will be simila
 however here we use a different prompt template:
 
 ```yaml
-- _target_: ragfoundry.processing.local_steps.prompter.TextPrompter
+- _target_: ragfit.processing.local_steps.prompter.TextPrompter
   inputs: dev
-  prompt_file: ragfoundry/processing/prompts/cot.txt
+  prompt_file: ragfit/processing/prompts/cot.txt
   output_key: prompt
   mapping:
         question: query
@@ -197,7 +197,7 @@ Additionally, we implement a technique from RAFT where some percentage of the ex
 in order for the model ability to filter noise. Here are the relevant steps:
 
 ```yaml
-- _target_: ragfoundry.processing.local_steps.raft.RAFTStep
+- _target_: ragfit.processing.local_steps.raft.RAFTStep
   inputs: train
   k: 5
   raft_p: 0.5
@@ -208,14 +208,14 @@ The `RAFTStep` implements the logic presented in the paper; the percentage of pu
 `raft_p`. The list of documents, some relevant, some distracting, are saved in a keyword called `output_key`.
 
 ```yaml
-- _target_: ragfoundry.processing.local_steps.context.DocumentsJoiner
+- _target_: ragfit.processing.local_steps.context.DocumentsJoiner
   inputs: train
   docs_key: raft_docs
   k:
 
-- _target_: ragfoundry.processing.local_steps.prompter.TextPrompter
+- _target_: ragfit.processing.local_steps.prompter.TextPrompter
   inputs: train
-  prompt_file: ragfoundry/processing/prompts/cot.txt
+  prompt_file: ragfit/processing/prompts/cot.txt
   output_key: prompt
   mapping:
         question: query
@@ -223,15 +223,15 @@ The `RAFTStep` implements the logic presented in the paper; the percentage of pu
 ```
 The documents are joined into strings; when `k:` all documents are used. The prompt used is the same as when building the dev dataset.
 
-Next is interacting with OpeanAI; we implemented an [OpenAI class](../ragfoundry/models/openai_executor.py) using Azure,
+Next is interacting with OpeanAI; we implemented an [OpenAI class](../ragfit/models/openai_executor.py) using Azure,
 one can implement using other abstractions. The step itself needs the `prompt_key`, instruction file and the results are
 saved in the `answer_key`.
 ```yaml
-- _target_: ragfoundry.processing.local_steps.api.openai.OpenAIChat
+- _target_: ragfit.processing.local_steps.api.openai.OpenAIChat
   inputs: train
   prompt_key: prompt
   answer_key: generated_answer
-  instruction: ragfoundry/processing/prompts/prompt_instructions/qa.txt
+  instruction: ragfit/processing/prompts/prompt_instructions/qa.txt
   model:
         azure_endpoint: azure.endpoint.com
         api_version: 2024-05-01-preview

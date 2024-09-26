@@ -13,7 +13,7 @@ repo_name: IntelLabs/RAGFoundry
 theme:
   name: material
   palette:
-    - scheme: ragfoundry
+    - scheme: ragfit
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
@@ -27,7 +27,7 @@ theme:
     text: Open sans
     code: inconsolata
   language: en
-  logo: assets/logo.png
+  logo: assets/rag_fit_white.png
   features:
     - announce.dismiss
     # - content.action.edit
