@@ -1,6 +1,6 @@
 [project]
 name = "ragfit"
-version = "1.1.1"
+version = "1.2.0"
 description = "Framework for enhancing LLMs for RAG tasks using fine-tuning."
 readme = "README.md"
 license = {file = "LICENSE"}
