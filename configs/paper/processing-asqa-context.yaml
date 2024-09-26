@@ -23,7 +23,7 @@ steps:
             question: query
             context: positive_passages
 
-    - _target_: ragfoundry.processing.global_steps.output.OutputData
+    - _target_: ragfit.processing.global_steps.output.OutputData
       inputs: [train, dev]
       prefix: asqa-context
 

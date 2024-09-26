@@ -1,6 +1,6 @@
 # Fine-tuning Phi-3 for PubmedQA
 
-We will demonstrate the RAG Foundry framework by creating a RAG augmented dataset, fine-tuning a model and running an evaluation on the [PubmedQA](https://huggingface.co/datasets/bigbio/pubmed_qa) dataset. We will follow the experimentation in the paper, implementing the **RAG-sft** configuration, which comprised of creating prompts with relevant context and fine-tuning a model on the completions.
+We will demonstrate the RAG-FiT framework by creating a RAG augmented dataset, fine-tuning a model and running an evaluation on the [PubmedQA](https://huggingface.co/datasets/bigbio/pubmed_qa) dataset. We will follow the experimentation in the paper, implementing the **RAG-sft** configuration, which comprised of creating prompts with relevant context and fine-tuning a model on the completions.
 
 The [PubmedQA](https://huggingface.co/datasets/bigbio/pubmed_qa) dataset contains relevant context for each question, so there's no need for retrieval—for an example with a retrieval step, see the ASQA processing [tutorial](./processing.md).
 

@@ -52,10 +52,10 @@ steps:
             fewshot: fewshot_examples
             answer: answers
 
-    - _target_: ragfoundry.processing.global_steps.output.OutputData
+    - _target_: ragfit.processing.global_steps.output.OutputData
       inputs: main
       prefix: nq_processed
 
-    - _target_: ragfoundry.processing.global_steps.output.HFHubOutput
+    - _target_: ragfit.processing.global_steps.output.HFHubOutput
       inputs: main
       hfhub_tag: username/dataset_tag_name

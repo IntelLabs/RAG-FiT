@@ -36,7 +36,7 @@ steps:
             api_version: 2024-05-01-preview
             model: GPT-4-32k-Bot
 
-    - _target_: ragfoundry.processing.global_steps.output.OutputData
+    - _target_: ragfit.processing.global_steps.output.OutputData
       inputs: train
       prefix: asqa-raft-cot
 

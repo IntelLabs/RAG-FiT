@@ -1,6 +1,6 @@
 # Data Augmentation
 
-To demonstrate the usage of RAG Foundry data augmentation, we will follow the experimentation presented in the paper.
+To demonstrate the usage of RAG-FiT data augmentation, we will follow the experimentation presented in the paper.
 Choosing the ASQA Q&A dataset and the Phi-3 model. We compare a baseline configuration with 4 other configurations:
 
 1. Retrieval augmentation using a corpus and inserting the documents in the prompt after the question.
@@ -96,7 +96,7 @@ with k=1, it collects only the `positive_passages` from the examples it samples 
 `negative_passages`.
 
 ```yaml
-- _target_: ragfoundry.processing.global_steps.output.OutputData
+- _target_: ragfit.processing.global_steps.output.OutputData
   inputs: [train, dev]
   prefix: asqa
 ```

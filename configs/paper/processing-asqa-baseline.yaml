@@ -13,7 +13,7 @@ steps:
       mapping:
             query: query
 
-    - _target_: ragfoundry.processing.global_steps.output.OutputData
+    - _target_: ragfit.processing.global_steps.output.OutputData
       inputs: dev
       prefix: asqa-baseline
 
