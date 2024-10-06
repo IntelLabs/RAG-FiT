@@ -8,7 +8,7 @@
 specially created RAG-augmented datasets. The library helps create the data for training, given a RAG technique, helps
 easily train models using parameter-efficient finetuning (PEFT), and finally can help users measure the improved
 performance using various, RAG-specific metrics. The library is modular, workflows are customizable using configuration
-files. Formerly called RAG Foundry.
+files. Formerly called *RAG Foundry*.
 
 Comments, suggestions, issues and pull-requests are welcomed! ❤️
 
@@ -82,9 +82,7 @@ configurations in the [Paper](./configs/paper) folder.
 
 ## Citation
 
-Please cite our paper if it helps your research:
-
-[RAG Foundry: A Framework for Enhancing LLMs for Retrieval Augmented Generation](https://arxiv.org/abs/2408.02545)
+Please cite our paper if it helps your research: [RAG Foundry: A Framework for Enhancing LLMs for Retrieval Augmented Generation](https://arxiv.org/abs/2408.02545).
 
 ```BibTex
 @article{fleischerRAGFoundryFramework2024,
