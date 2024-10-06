@@ -2,39 +2,39 @@ name: asqa_retrieval
 cache: false
 output_path: .
 steps:
-    - _target_: ragfoundry.processing.dataset_loaders.loaders.HFLoader
+    - _target_: ragfit.processing.dataset_loaders.loaders.HFLoader
       inputs: train
       dataset_config:
             path: din0s/asqa
             split: train
 
-    - _target_: ragfoundry.processing.dataset_loaders.loaders.HFLoader
+    - _target_: ragfit.processing.dataset_loaders.loaders.HFLoader
       inputs: dev
       dataset_config:
             path: din0s/asqa
             split: dev
 
-    - _target_: ragfoundry.processing.local_steps.common_datasets.ASQA
+    - _target_: ragfit.processing.local_steps.common_datasets.ASQA
       inputs: [train, dev]
 
     - _target_:
-            ragfoundry.processing.local_steps.retrievers.haystack.HaystackRetriever
+            ragfit.processing.local_steps.retrievers.haystack.HaystackRetriever
       inputs: [train, dev]
       pipeline_or_yaml_path: ./configs/external/haystack/qdrant.yaml
       docs_key: positive_passages
       query_key: query
 
-    - _target_: ragfoundry.processing.local_steps.context.ContextHandler
+    - _target_: ragfit.processing.local_steps.context.ContextHandler
       inputs: [train, dev]
       docs_key: positive_passages
 
-    - _target_: ragfoundry.processing.global_steps.sampling.Sampler
+    - _target_: ragfit.processing.global_steps.sampling.Sampler
       inputs: [train, dev]
       k: 1
       input_key: positive_passages
       output_key: negative_passages
 
-    - _target_: ragfoundry.processing.global_steps.output.OutputData
+    - _target_: ragfit.processing.global_steps.output.OutputData
       inputs: [train, dev]
       prefix: asqa
 

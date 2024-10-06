@@ -1,12 +1,12 @@
 model:
-    _target_: ragfoundry.models.hf.HFInference
+    _target_: ragfit.models.hf.HFInference
     model_name_or_path: microsoft/Phi-3-mini-128k-instruct
     load_in_4bit: false
     load_in_8bit: true
     device_map: auto
     torch_dtype:
     trust_remote_code: true
-    instruction: ragfoundry/processing/prompts/prompt_instructions/qa-yes-no.txt
+    instruction: ragfit/processing/prompts/prompt_instructions/qa-yes-no.txt
     instruct_in_prompt: false
     lora_path: ./trained_model/checkpoint
     generation:

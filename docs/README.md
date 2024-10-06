@@ -1,4 +1,4 @@
-# Generating RAG Foundry Documentation
+# Generating RAG-FiT Documentation
 
 ## Installation
 
@@ -13,7 +13,7 @@ pip install -r docs/requirements.txt
 - Generate python docstrings using:
 
 ``` sh
-cd <rag foundry root>
+cd <project root>
 python docs/scripts/generate_docstring.py
 ```
 

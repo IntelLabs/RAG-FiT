@@ -1,6 +1,6 @@
 [project]
-name = "ragfoundry"
-version = "1.1.1"
+name = "ragfit"
+version = "1.2.0"
 description = "Framework for enhancing LLMs for RAG tasks using fine-tuning."
 readme = "README.md"
 license = {file = "LICENSE"}
@@ -25,11 +25,11 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/IntelLabs/RAGFoundry"
-Documentation = "https://intellabs.github.io/RAGFoundry/"
+Homepage = "https://github.com/IntelLabs/RAG-FiT"
+Documentation = "https://intellabs.github.io/RAG-FiT/"
 
 [tool.setuptools]
-packages = ["ragfoundry"]
+packages = ["ragfit"]
 
 [project.optional-dependencies]
 deepeval = [

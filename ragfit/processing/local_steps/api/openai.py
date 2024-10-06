@@ -1,4 +1,4 @@
-from ragfoundry.models.openai_executor import OpenAIExecutor
+from ragfit.models.openai_executor import OpenAIExecutor
 
 from ...step import LocalStep
 

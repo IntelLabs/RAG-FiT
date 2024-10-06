@@ -4,7 +4,7 @@ Training is done on the processed files. The training configuration has 3 parts:
 
 ```yaml
 model:
-    _target_: ragfoundry.models.hf.HFTrain
+    _target_: ragfit.models.hf.HFTrain
     model_name_or_path: microsoft/Phi-3-mini-128k-instruct
     load_in_4bit: false
     load_in_8bit: true
@@ -56,7 +56,7 @@ Training is done using the `SFTTrainer` in `TRL`. Training arguments are based o
 
 Finally, data and other options:
 ```yaml
-instruction: ragfoundry/processing/prompts/prompt_instructions/qa.txt
+instruction: ragfit/processing/prompts/prompt_instructions/qa.txt
 template:
 data_file:
 input_key: prompt

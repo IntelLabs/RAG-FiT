@@ -1,5 +1,5 @@
 model:
-    _target_: ragfoundry.models.hf.HFTrain
+    _target_: ragfit.models.hf.HFTrain
     model_name_or_path: microsoft/Phi-3-mini-128k-instruct
     load_in_4bit: false
     load_in_8bit: true
@@ -43,7 +43,7 @@ train:
     weight_decay: 0.001
     report_to:
 
-instruction: ragfoundry/processing/prompts/prompt_instructions/qa-yes-no.txt
+instruction: ragfit/processing/prompts/prompt_instructions/qa-yes-no.txt
 template:
 data_file: pubmed-rag-train.jsonl
 input_key: prompt

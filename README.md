@@ -1,16 +1,14 @@
 <div align="center">
-    <img src="assets/rag_foundry.png" width="500"/>
+    <img src="assets/rag_fit.png" width="400"/>
 </div>
 
 ----------
 
-[RAG Foundry: A Framework for Enhancing LLMs for Retrieval Augmented Generation](https://arxiv.org/abs/2408.02545)
-
-**RAG Foundry** is a library designed to improve LLMs ability to use external information by fine-tuning models on
+**RAG-FiT** is a library designed to improve LLMs ability to use external information by fine-tuning models on
 specially created RAG-augmented datasets. The library helps create the data for training, given a RAG technique, helps
 easily train models using parameter-efficient finetuning (PEFT), and finally can help users measure the improved
 performance using various, RAG-specific metrics. The library is modular, workflows are customizable using configuration
-files.
+files. Formerly called *RAG Foundry*.
 
 Comments, suggestions, issues and pull-requests are welcomed! ❤️
 
@@ -33,7 +31,7 @@ For a simple, end-to-end example, see the [PubmedQA Tutorial](./docs/pubmed.md).
 
 ## Overview
 
-The RAG Foundry framework facilitates fast prototyping and experimentation with various RAG settings and configurations,
+The RAG-FiT framework facilitates fast prototyping and experimentation with various RAG settings and configurations,
 including data selection and filtering, processing, retrieval, ranking, query manipulation, prompt generation, training,
 inference, output processing and evaluation. The library is comprised of 4 modules: dataset creation, training,
 inference and evaluation.
@@ -84,7 +82,7 @@ configurations in the [Paper](./configs/paper) folder.
 
 ## Citation
 
-Please cite our paper if it helps your research:
+Please cite our paper if it helps your research: [RAG Foundry: A Framework for Enhancing LLMs for Retrieval Augmented Generation](https://arxiv.org/abs/2408.02545).
 
 ```BibTex
 @article{fleischerRAGFoundryFramework2024,

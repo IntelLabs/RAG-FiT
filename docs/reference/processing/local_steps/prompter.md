@@ -1,1 +1,1 @@
-::: ragfoundry.processing.local_steps.prompter
+::: ragfit.processing.local_steps.prompter

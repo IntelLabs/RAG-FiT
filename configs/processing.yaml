@@ -2,39 +2,39 @@ name: my_processing_pipeline
 cache: true
 output_path: .
 steps:
-    - _target_: ragfoundry.processing.dataset_loaders.loaders.HFLoader
+    - _target_: ragfit.processing.dataset_loaders.loaders.HFLoader
       inputs: main
       dataset_config:
         path: Tevatron/wikipedia-nq
         split: train
 
-    - _target_: ragfoundry.processing.global_steps.sampling.ShuffleSelect
+    - _target_: ragfit.processing.global_steps.sampling.ShuffleSelect
       inputs: main
       shuffle: 42
       limit: 10000
 
-    - _target_: ragfoundry.processing.local_steps.context.ContextHandler
+    - _target_: ragfit.processing.local_steps.context.ContextHandler
       inputs: main
       docs_key: positive_passages
       text_key: text
 
-    - _target_: ragfoundry.processing.local_steps.context.DocumentsJoiner
+    - _target_: ragfit.processing.local_steps.context.DocumentsJoiner
       inputs: main
       docs_key: positive_passages
 
-    - _target_: ragfoundry.processing.local_steps.formatting.FlattenList
+    - _target_: ragfit.processing.local_steps.formatting.FlattenList
       inputs: main
       input_key: answers
       output_key: answers
 
-    - _target_: ragfoundry.processing.global_steps.sampling.FewShot
+    - _target_: ragfit.processing.global_steps.sampling.FewShot
       inputs: main
       k: 3
       output_key: fewshot_examples
 
-    - _target_: ragfoundry.processing.local_steps.prompter.FewshotPrompter
+    - _target_: ragfit.processing.local_steps.prompter.FewshotPrompter
       inputs: main
-      prompt_file: ragfoundry/processing/prompts/qa-with-answer.txt
+      prompt_file: ragfit/processing/prompts/qa-with-answer.txt
       fewshot_key: fewshot_examples
       output_key: fewshot_examples
       mapping:
@@ -42,9 +42,9 @@ steps:
             context: positive_passages
             answer: answers
 
-    - _target_: ragfoundry.processing.local_steps.prompter.TextPrompter
+    - _target_: ragfit.processing.local_steps.prompter.TextPrompter
       inputs: main
-      prompt_file: ragfoundry/processing/prompts/qa-fewshot.txt
+      prompt_file: ragfit/processing/prompts/qa-fewshot.txt
       output_key: prompt
       mapping:
             question: query
@@ -52,10 +52,10 @@ steps:
             fewshot: fewshot_examples
             answer: answers
 
-    - _target_: ragfoundry.processing.global_steps.output.OutputData
+    - _target_: ragfit.processing.global_steps.output.OutputData
       inputs: main
       prefix: nq_processed
 
-    - _target_: ragfoundry.processing.global_steps.output.HFHubOutput
+    - _target_: ragfit.processing.global_steps.output.HFHubOutput
       inputs: main
       hfhub_tag: username/dataset_tag_name

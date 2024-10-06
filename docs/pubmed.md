@@ -1,6 +1,6 @@
 # Fine-tuning Phi-3 for PubmedQA
 
-We will demonstrate the RAG Foundry framework by creating a RAG augmented dataset, fine-tuning a model and running an evaluation on the [PubmedQA](https://huggingface.co/datasets/bigbio/pubmed_qa) dataset. We will follow the experimentation in the paper, implementing the **RAG-sft** configuration, which comprised of creating prompts with relevant context and fine-tuning a model on the completions.
+We will demonstrate the RAG-FiT framework by creating a RAG augmented dataset, fine-tuning a model and running an evaluation on the [PubmedQA](https://huggingface.co/datasets/bigbio/pubmed_qa) dataset. We will follow the experimentation in the paper, implementing the **RAG-sft** configuration, which comprised of creating prompts with relevant context and fine-tuning a model on the completions.
 
 The [PubmedQA](https://huggingface.co/datasets/bigbio/pubmed_qa) dataset contains relevant context for each question, so there's no need for retrieval—for an example with a retrieval step, see the ASQA processing [tutorial](./processing.md).
 
@@ -32,13 +32,13 @@ Start by defining a pipeline name, turning caching on, and specifying the curren
 
 ```yaml
 steps:
-    - _target_: ragfoundry.processing.dataset_loaders.loaders.HFLoader
+    - _target_: ragfit.processing.dataset_loaders.loaders.HFLoader
       inputs: train
       dataset_config:
             path: bigbio/pubmed_qa
             split: train
 
-    - _target_: ragfoundry.processing.dataset_loaders.loaders.HFLoader
+    - _target_: ragfit.processing.dataset_loaders.loaders.HFLoader
       inputs: test
       dataset_config:
             path: bigbio/pubmed_qa
@@ -49,14 +49,14 @@ steps:
 Next we load a training and test sets from the Hugging Face hub. The `inputs` keyword is used to denote the datasets to be used on the subsequent steps.
 
 ```yaml
-    - _target_: ragfoundry.processing.global_steps.sampling.ShuffleSelect
+    - _target_: ragfit.processing.global_steps.sampling.ShuffleSelect
       inputs: train
       limit: 50000
 
-    - _target_: ragfoundry.processing.local_steps.common_datasets.PubMed
+    - _target_: ragfit.processing.local_steps.common_datasets.PubMed
       inputs: [train, test]
 
-    - _target_: ragfoundry.processing.local_steps.context.DocumentsJoiner
+    - _target_: ragfit.processing.local_steps.context.DocumentsJoiner
       inputs: [train, test]
       docs_key: positive_passages
       k: 5
@@ -65,9 +65,9 @@ Next we load a training and test sets from the Hugging Face hub. The `inputs` ke
 Next are 3 technical steps: we limit the size of the training dataset to 50k examples (optional). We do minimal processing of features: namely creating a `query`, `answers` and `positive_passages` features. Finally, we combine `k=5` relevant documents for each example into a string, to be used later in a prompt.
 
 ```yaml
-    - _target_: ragfoundry.processing.local_steps.prompter.TextPrompter
+    - _target_: ragfit.processing.local_steps.prompter.TextPrompter
       inputs: [train, test]
-      prompt_file: ragfoundry/processing/prompts/qa.txt
+      prompt_file: ragfit/processing/prompts/qa.txt
       output_key: prompt
       mapping:
             question: query
@@ -87,7 +87,7 @@ Training is done on the generated files. The training configuration has 3 parts:
 
 ```yaml
 model:
-    _target_: ragfoundry.models.hf.HFTrain
+    _target_: ragfit.models.hf.HFTrain
     model_name_or_path: microsoft/Phi-3-mini-128k-instruct
     load_in_4bit: false
     load_in_8bit: true
@@ -123,7 +123,7 @@ train:
 Training is done using the `SFTTrainer` in `TRL`. Training arguments are based on HuggingFace `Trainer`.
 
 ```yaml
-instruction: ragfoundry/processing/prompts/prompt_instructions/qa-yes-no.txt
+instruction: ragfit/processing/prompts/prompt_instructions/qa-yes-no.txt
 template:
 data_file: pubmed-rag-train.jsonl
 input_key: prompt
@@ -157,13 +157,13 @@ It is simple in nature, described by the following configuration:
 
 ```yaml
 model:
-    _target_: ragfoundry.models.hf.HFInference
+    _target_: ragfit.models.hf.HFInference
     model_name_or_path: microsoft/Phi-3-mini-128k-instruct
     load_in_4bit: false
     load_in_8bit: true
     device_map: auto
     trust_remote_code: true
-    instruction: ragfoundry/processing/prompts/prompt_instructions/qa-yes-no.txt
+    instruction: ragfit/processing/prompts/prompt_instructions/qa-yes-no.txt
     lora_path: ./trained_model/checkpoint
     generation:
         do_sample: false
@@ -203,12 +203,12 @@ The configuration for the evaluation looks like this:
 
 ```yaml
 answer_processor:
-    _target_: ragfoundry.processing.answer_processors.regex.RegexAnswer
+    _target_: ragfit.processing.answer_processors.regex.RegexAnswer
     capture_pattern:
     stopping_pattern:
 
 metrics:
-    - _target_: ragfoundry.evaluation.metrics.Classification
+    - _target_: ragfit.evaluation.metrics.Classification
       mapping:
         "yes": 1
         "no": 0

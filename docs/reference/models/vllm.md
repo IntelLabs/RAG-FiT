@@ -1,1 +1,1 @@
-::: ragfoundry.models.vllm
+::: ragfit.models.vllm

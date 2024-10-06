@@ -2,18 +2,18 @@ name: asqa_baseline
 cache: false
 output_path: .
 steps:
-    - _target_: ragfoundry.processing.dataset_loaders.loaders.LocalLoader
+    - _target_: ragfit.processing.dataset_loaders.loaders.LocalLoader
       inputs: dev
       filename: asqa-dev.jsonl
 
-    - _target_: ragfoundry.processing.local_steps.prompter.TextPrompter
+    - _target_: ragfit.processing.local_steps.prompter.TextPrompter
       inputs: dev
-      prompt_file: ragfoundry/processing/prompts/qa-short.txt
+      prompt_file: ragfit/processing/prompts/qa-short.txt
       output_key: prompt
       mapping:
             query: query
 
-    - _target_: ragfoundry.processing.global_steps.output.OutputData
+    - _target_: ragfit.processing.global_steps.output.OutputData
       inputs: dev
       prefix: asqa-baseline
 

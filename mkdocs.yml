@@ -1,19 +1,19 @@
 # site info
-site_name: RAG Foundry Documentation
+site_name: RAG-FiT Documentation
 # site_url: http://
 site_author: Intel Labs
 site_description:
   Small, minimalistic and modular library to improve and measure LLMs RAG ability, using prompt-engineering and fine-tuning.
 
 # Repository
-repo_url: https://github.com/IntelLabs/RAGFoundry
-repo_name: IntelLabs/RAGFoundry
+repo_url: https://github.com/IntelLabs/RAG-FiT
+repo_name: IntelLabs/RAG-FiT
 
 # theme
 theme:
   name: material
   palette:
-    - scheme: ragfoundry
+    - scheme: ragfit
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
@@ -27,7 +27,7 @@ theme:
     text: Open sans
     code: inconsolata
   language: en
-  logo: assets/logo.png
+  logo: assets/rag_fit_white.png
   features:
     - announce.dismiss
     # - content.action.edit

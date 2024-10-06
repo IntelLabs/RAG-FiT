@@ -1,4 +1,4 @@
-from ragfoundry.evaluation.metrics import normalize_text
+from ragfit.evaluation.metrics import normalize_text
 
 from ..step import LocalStep
 

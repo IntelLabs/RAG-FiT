@@ -1,14 +1,14 @@
 answer_processor:
-    _target_: ragfoundry.processing.answer_processors.regex.RegexAnswer
+    _target_: ragfit.processing.answer_processors.regex.RegexAnswer
     capture_pattern: "<ANSWER>: (.*)"
     stopping_pattern:
 
 metrics:
-    - _target_: ragfoundry.evaluation.deep.Faithfulness
+    - _target_: ragfit.evaluation.deep.Faithfulness
       azure_endpoint: azure.endpoint.com
       azure_deployment: GPT-4-32k-Bot
       api_version: 2024-05-01-preview
-    - _target_: ragfoundry.evaluation.deep.Relevancy
+    - _target_: ragfit.evaluation.deep.Relevancy
       azure_endpoint: azure.endpoint.com
       azure_deployment: GPT-4-32k-Bot
       api_version: 2024-05-01-preview
