@@ -17,7 +17,7 @@ python module-name.py -cp configs/paper -cn config-name-without-extension
 We use the 1st module, called `processing.py` to generate the RAG-augmented dataset. To run it:
 
 ```sh
-python processing.py -cp configs/paper -cn processing-pubmed-rag
+python processing.py -cp configs/paper -cn processing-pubmed-context
 ```
 
 Let's analyze the [configuration file](../configs/paper/processing-pubmed-context.yaml) used for the dataset creation:
