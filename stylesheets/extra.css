@@ -1,0 +1,12 @@
+[data-md-color-scheme="ragfit"] {
+    --md-primary-fg-color:        #2B66AF;
+    --md-primary-fg-color--light: #f2f2f2;
+    --md-primary-fg-color--dark:  #333333;
+  }
+
+/* Indentation. */
+div.doc-contents:not(.first) {
+  padding-left: 20px;
+  border-left: .05rem solid var(--md-typeset-table-color);
+}
+
