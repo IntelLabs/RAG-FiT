@@ -1,0 +1,6 @@
+line-length = 90
+
+[lint]
+select = ["E", "F", "W", "I", "N", "Q"]
+ignore = ["E203", "F841", "E501", "F821"]
+exclude = ["*.ipynb"]

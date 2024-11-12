@@ -1,6 +1,7 @@
 import logging
 import os
 from collections import defaultdict
+from pathlib import Path
 
 import hydra
 import torch
@@ -93,10 +94,12 @@ def main(args):
     if args.use_wandb:
         run.log(results, step=0)
 
-    if args.results_file:
-        with open(args.results_file, "w") as f:
-            yaml.dump(results, f, sort_keys=True)
-        logging.info(f"Results saved to {args.results_file}")
+    if args.results_file is None:
+        args.results_file = Path(args.generated_file).stem + "-results.yaml"
+
+    with open(args.results_file, "w") as f:
+        yaml.dump(results, f, sort_keys=True)
+    logging.info(f"Results saved to {args.results_file}")
 
 
 if __name__ == "__main__":

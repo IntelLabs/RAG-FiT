@@ -1,0 +1,40 @@
+name: nq
+cache: false
+output_path: .
+steps:
+    - _target_: ragfit.processing.dataset_loaders.loaders.HFLoader
+      inputs: train
+      dataset_config:
+        path: Tevatron/wikipedia-nq
+        split: train
+
+    - _target_: ragfit.processing.global_steps.sampling.ShuffleSelect
+      inputs: train
+      shuffle: 42
+      limit: 10000
+
+    - _target_: ragfit.processing.local_steps.prompter.TextPrompter
+      inputs: train
+      prompt_file: ragfit/processing/prompts/qa-short.txt
+      output_key: prompt
+      mapping:
+            query: query
+
+    - _target_: ragfit.processing.local_steps.inference.HFStep
+      inputs: train
+      input_key: prompt
+      output_key: generated
+      model_kwargs:
+          model_name_or_path: meta-llama/Meta-Llama-3.1-8B-Instruct
+          instruction: ragfit/processing/prompts/prompt_instructions/qa-short.txt
+          num_gpus: 2
+          llm_params:
+              dtype: auto
+              max_model_len: 4096
+          generation:
+              temperature: 0
+              max_tokens: 50
+
+    - _target_: ragfit.processing.global_steps.output.OutputData
+      inputs: train
+      prefix: nq-with-answers
