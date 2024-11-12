@@ -175,10 +175,12 @@ nav:
                       "reference/processing/local_steps/api/openai.md"
               - Context: "reference/processing/local_steps/context.md"
               - Prompt Creation: "reference/processing/local_steps/prompter.md"
+              - Inference: "reference/processing/local_steps/inference.md"
               - RAFT: "reference/processing/local_steps/raft.md"
           - Global Steps:
               - Aggregation and merging: "reference/processing/global_steps/aggregation.md"
               - Sampling and Fewshot: "reference/processing/global_steps/sampling.md"
+              - Filters: "reference/processing/global_steps/filters.md"
               - Output: "reference/processing/global_steps/output.md"
           - Answer Processors:
               - regex: "reference/processing/answer_processors/regex.md"
