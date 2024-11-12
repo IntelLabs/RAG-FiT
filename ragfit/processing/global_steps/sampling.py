@@ -24,7 +24,7 @@ class ShuffleSelect(GlobalStep):
         if self.shuffle:
             dataset = dataset.shuffle(seed=self.shuffle)
         if self.limit:
-            dataset = dataset.select(range(self.limit))
+            dataset = dataset.select(range(min(len(dataset), self.limit)))
         return dataset
 
 

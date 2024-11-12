@@ -1,5 +1,6 @@
 import logging
 import os
+from operator import itemgetter
 from pathlib import Path
 
 import hydra
@@ -20,7 +21,8 @@ def setup_wandb(args: dict):
     env = {key: os.getenv(key) for key in os.environ}
     run = wandb.init(
         job_type="train",
-        project=args["experiment"],
+        project=args["project"],
+        group=args["experiment"],
         entity=args["wandb_entity"],
         config={**args, **env},
         tags=["train"],
@@ -85,6 +87,9 @@ def main(args):
 
     dataset = dataset.map(format_answer)
 
+    # Split the dataset into train and dev
+    train, dev = itemgetter("train", "test")(dataset.train_test_split(args.dev_split))
+
     collator = DataCollatorForCompletionOnlyLM(
         model_class.tokenizer.encode(
             args.model.completion_start, add_special_tokens=False
@@ -100,7 +105,8 @@ def main(args):
         model=model_class.model,
         args=training_args,
         data_collator=collator,
-        train_dataset=dataset,
+        train_dataset=train,
+        eval_dataset=dev,
         dataset_batch_size=1,
         packing=False,
         max_seq_length=args.model.max_sequence_len,

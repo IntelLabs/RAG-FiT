@@ -2,3 +2,6 @@
 /outputs/
 __pycache__/
 /site/
+/multirun/
+wandb
+.ipynb_checkpoints

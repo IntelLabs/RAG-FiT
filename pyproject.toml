@@ -40,9 +40,3 @@ haystack = [
     "qdrant-haystack>=5.0.0",
 ]
 
-[tool.ruff]
-line-length = 90
-
-[tool.ruff.lint]
-select = ["E", "F", "W", "I", "N", "Q"]
-ignore = ["E203", "F841", "E501"]

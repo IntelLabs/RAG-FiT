@@ -1,6 +1,9 @@
 import re
 import string
+import unicodedata
 from collections import Counter, defaultdict
+
+import regex
 
 from .base import MetricBase
 
@@ -71,6 +74,13 @@ class Classification(MetricBase):
         self.precision_recall_fn = precision_recall_fscore_support
         self.accuracy_fn = accuracy_score
 
+    def in_text(self, text):
+        if "yes" in text:
+            return 1
+        if "no" in text:
+            return 0
+        return 2
+
     def measure(self, example: dict):
         inputs = example[self.field]
         targets = example[self.target]
@@ -78,9 +88,7 @@ class Classification(MetricBase):
         if isinstance(targets[0], list):
             targets = [t[0] for t in targets]
 
-        inputs = [
-            self.mapping.get(normalize_text(i).strip(), self.else_value) for i in inputs
-        ]
+        inputs = [self.in_text(normalize_text(i).strip()) for i in inputs]
 
         targets = [
             self.mapping.get(normalize_text(t).strip(), self.else_value) for t in targets
@@ -220,6 +228,73 @@ class StringEM(MetricBase):
         scores = [any(cand in input for cand in item) for item in target]
 
         return {"StringEM": sum(scores) / len(scores)}
+
+
+class SimpleTokenizer(object):
+    ALPHA_NUM = r"[\p{L}\p{N}\p{M}]+"
+    NON_WS = r"[^\p{Z}\p{C}]"
+
+    def __init__(self):
+        """
+        Args:
+            annotators: None or empty set (only tokenizes).
+        """
+        self._regexp = regex.compile(
+            "(%s)|(%s)" % (self.ALPHA_NUM, self.NON_WS),
+            flags=regex.IGNORECASE + regex.UNICODE + regex.MULTILINE,
+        )
+
+    def tokenize(self, text, uncased=False):
+        matches = [m for m in self._regexp.finditer(text)]
+        if uncased:
+            tokens = [m.group().lower() for m in matches]
+        else:
+            tokens = [m.group() for m in matches]
+        return tokens
+
+
+class RecallEM(MetricBase):
+    """
+    Implementing EM as in XRAG.
+    """
+
+    def __init__(self, key_names, **kwargs) -> None:
+        """Initialize the Metrics class.
+
+        Args:
+            key_names (dict): A dictionary containing the field names.
+        """
+        super().__init__(key_names, **kwargs)
+        self.local = True
+
+    @staticmethod
+    def _normalize(text):
+        return unicodedata.normalize("NFD", text)
+
+    def has_answer(self, answers, text, tokenizer=SimpleTokenizer()):
+        """Check if a document contains an answer string."""
+        text = self._normalize(text)
+        text = tokenizer.tokenize(text, uncased=True)
+
+        for answer in answers:
+            answer = self._normalize(answer)
+            answer = tokenizer.tokenize(answer, uncased=True)
+            for i in range(0, len(text) - len(answer) + 1):
+                if answer == text[i : i + len(answer)]:
+                    return True
+        return False
+
+    def measure(self, example: dict):
+        input = example[self.field]
+        target = example[self.target]
+
+        assert isinstance(input, str), f"Generated text should be a string: {input}"
+
+        if not isinstance(target, list):
+            target = [target]
+
+        scores = self.has_answer(target, input)
+        return {"recallEM": int(scores)}
 
 
 class BERTScore(MetricBase):

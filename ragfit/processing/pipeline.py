@@ -57,8 +57,9 @@ class DataPipeline:
         Returns a string.
         """
         return (
-            f"{self.output_path}/{self.name}"
-            f"_{index}_{type(step).__name__}"
+            f"{self.output_path}/cache"
+            f"_{self.name}_{index}"
+            f"_{type(step).__name__}"
             f"_{dataset_name}_{step.get_hash()}.json"
         )
 

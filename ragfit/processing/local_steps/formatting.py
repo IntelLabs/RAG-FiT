@@ -40,3 +40,23 @@ class FlattenList(LocalStep):
     def process_item(self, item, index, datasets, **kwargs):
         item[self.output_key] = self.string_join.join(item[self.input_key])
         return item
+
+
+class UpdateField(LocalStep):
+    """
+    Class to update a field in the dataset with a new value.
+    """
+
+    def __init__(self, input_key: str, value, **kwargs):
+        """
+        Args:
+            input_key (str): example key to change.
+            value: New value to set for the field.
+        """
+        super().__init__(**kwargs)
+        self.input_key = input_key
+        self.value = value
+
+    def process_item(self, item, index, datasets, **kwargs):
+        item[self.input_key] = self.value
+        return item
