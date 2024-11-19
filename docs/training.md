@@ -90,9 +90,9 @@ Phi-3 model, experimenting with 5 different configurations. Only 2 configuration
 training job like this:
 
 ```sh
-python training.py -cp configs/paper -cn training-asqa  \
-       data_file=asqa-prefix-train.jsonl                \
-       output_key=answers                               \
+python training.py -cp configs/paper -cn training-asqa   \
+       data_file=asqa-context-train.jsonl                \
+       output_key=answers                                \
        train.output_dir=./trained_models_context/
 ```
 
