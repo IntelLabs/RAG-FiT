@@ -1,0 +1,62 @@
+model:
+    _target_: ragfit.models.hf.HFTrain
+    model_name_or_path: microsoft/Phi-3-mini-128k-instruct
+    # load_in_4bit: false
+    # load_in_8bit: true
+    quantization_config:
+        _target_: transformers.BitsAndBytesConfig
+        load_in_8bit: true
+
+    torch_dtype:
+    device_map: auto
+    trust_remote_code: true
+    lora:
+        bias: none
+        fan_in_fan_out: false
+        layers_pattern:
+        layers_to_transform:
+        lora_alpha: 16
+        lora_dropout: 0.1
+        peft_type: LORA
+        r: 16
+        target_modules:
+            - qkv_proj
+        task_type: CAUSAL_LM
+        use_rslora: true
+    completion_start: <|assistant|>
+    instruction_in_prompt:
+    max_sequence_len: 2000
+
+train:
+    output_dir: ./trained_model/
+    bf16: false
+    fp16: false
+    gradient_accumulation_steps: 2
+    group_by_length:
+    learning_rate: 1e-4
+    logging_steps: 10
+    lr_scheduler_type: cosine
+    max_steps: -1
+    num_train_epochs: 1
+    per_device_train_batch_size: 1
+    optim: paged_adamw_8bit
+    remove_unused_columns: true
+    save_steps: 20000
+    save_total_limit: 1
+    warmup_ratio: 0.03
+    weight_decay: 0.001
+    report_to:
+
+instruction: ragfit/processing/prompts/prompt_instructions/qa-yes-no.txt
+template:
+data_file: pubmed-rag-train.jsonl
+input_key: prompt
+output_key: answers
+resume_checkpoint:
+limit:
+shuffle:
+hfhub_tag:
+use_wandb:
+experiment:
+wandb_entity:
+dev_split: 0.1
