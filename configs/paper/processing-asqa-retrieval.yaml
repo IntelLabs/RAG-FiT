@@ -20,7 +20,7 @@ steps:
     - _target_:
             ragfit.processing.local_steps.retrievers.haystack.HaystackRetriever
       inputs: [train, dev]
-      pipeline_or_yaml_path: ./configs/external/haystack/qdrant.yaml
+      pipeline_or_yaml_path: null
       docs_key: positive_passages
       query_key: query
 
