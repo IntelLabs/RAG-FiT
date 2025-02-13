@@ -4,6 +4,13 @@
 
 ----------
 
+> [!IMPORTANT]
+> ### SQuARE: Sequential Question Answering Reasoning Engine for Enhanced Chain-of-Thought in Large Language Models
+>
+> The configurations and code examples related to the paper will be available shortly in this branch. Thank you for your patience!
+
+----------
+
 **RAG-FiT** is a library designed to improve LLMs ability to use external information by fine-tuning models on
 specially created RAG-augmented datasets. The library helps create the data for training, given a RAG technique, helps
 easily train models using parameter-efficient finetuning (PEFT), and finally can help users measure the improved
