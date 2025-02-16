@@ -4,7 +4,7 @@ answer_processor:
     stopping_pattern:
 
 metrics:
-    - _target_: ragfit.evaluation.metrics.StringEM
+    - _target_: ragfit.evaluation.metrics.RecallEM
 
 key_names:
     generated: text

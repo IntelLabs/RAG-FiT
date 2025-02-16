@@ -1,0 +1,21 @@
+# @package _global_
+model:
+    _target_: ragfit.models.api.AzureLLM
+    azure_endpoint: azure.endpoint.com
+    azure_deployment: gpt-4o
+    api_version: 2024-02-15-preview
+    max_tokens: 500
+    instruction: ragfit/processing/prompts/prompt_instructions/qa-cot-rag.txt
+    template: ragfit/processing/prompts/qa-rag.txt
+    template_map:
+        question: query
+        context: rag_context
+    extra_keys:
+    examples:
+
+data_file: data/evaluation/Tevatron-wikipedia-trivia-dev-raft-context-zeroshot.jsonl
+generated_file: cot-triviaqa-test-gpt4-generated.jsonl
+input_key: prompt
+generation_key: output
+target_key: answers
+limit: 150

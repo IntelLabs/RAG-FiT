@@ -33,7 +33,7 @@ def main(args):
 
     def map_generate(model, example, idx):
         if idx >= len(saved_data):
-            out = model.generate(example[args.input_key])
+            out = model.generate(example)
             example[args.generation_key] = out
 
             with open(args.generated_file, "a") as f:

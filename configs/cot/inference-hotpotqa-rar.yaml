@@ -1,0 +1,31 @@
+# @package _global_
+model:
+    _target_: ragfit.models.hf.HFInferencePrompt
+    model_name_or_path: meta-llama/Meta-Llama-3.1-8B-Instruct
+    load_in_4bit: false
+    load_in_8bit: true
+    attn_implementation: flash_attention_2
+    device_map: auto
+    torch_dtype:
+    trust_remote_code: true
+    instruction: ragfit/processing/prompts/prompt_instructions/qa-rar.txt
+    template: ragfit/processing/prompts/qa-no-rag.txt
+    template_map:
+        question: query
+    lora_path:
+    examples:
+    generation:
+        do_sample: false
+        max_new_tokens: 500
+        max_length:
+        temperature:
+        top_k:
+        top_p:
+        return_full_text: false
+
+data_file: ./data/evaluation/facebook-kilt_tasks-hotpotqa-validation-raft-context-zeroshot.jsonl
+generated_file: cot1-no-rag-hotpotqa-test-generated.jsonl
+input_key: prompt
+generation_key: output
+target_key: answers
+limit: 200

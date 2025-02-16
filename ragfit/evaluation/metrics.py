@@ -1,9 +1,9 @@
-import re
-import string
 import unicodedata
 from collections import Counter, defaultdict
 
 import regex
+
+from ragfit.utils import normalize_text
 
 from .base import MetricBase
 
@@ -107,33 +107,6 @@ class Classification(MetricBase):
         }
 
 
-def normalize_text(s):
-    """
-    Normalize the given text by lowercasing it, removing punctuation, articles, and extra whitespace.
-
-    Args:
-        s (str): The text to be normalized.
-
-    Returns:
-        str: The normalized text.
-    """
-
-    def remove_articles(text):
-        return re.sub(r"\b(a|an|the)\b", " ", text)
-
-    def white_space_fix(text):
-        return " ".join(text.split())
-
-    def remove_punc(text):
-        exclude = set(string.punctuation)
-        return "".join(ch for ch in text if ch not in exclude)
-
-    def lower(text):
-        return text.lower()
-
-    return white_space_fix(remove_articles(remove_punc(lower(s))))
-
-
 class F1(MetricBase):
     """
     Implementing F1 based on code from Kilt.
@@ -199,9 +172,9 @@ class EM(MetricBase):
         return {"EM": int(max(scores))}
 
 
-class StringEM(MetricBase):
+class RecallEM(MetricBase):
     """
-    Implementing String Exact Match.
+    Implementing recall Exact Match.
 
     Used in ASQA to evaluate whether the annoated short answers appear in the
     generated answer as sub-strings.
@@ -253,9 +226,9 @@ class SimpleTokenizer(object):
         return tokens
 
 
-class RecallEM(MetricBase):
+class StringEM(MetricBase):
     """
-    Implementing EM as in XRAG.
+    Implementing sub-string Exact Match as in XRAG.
     """
 
     def __init__(self, key_names, **kwargs) -> None:
@@ -361,3 +334,24 @@ class Semantic(MetricBase):
         scores = self.model.predict([[input, t] for t in target])
 
         return {"Semantic": max(scores)}
+
+
+class NonEmpty(MetricBase):
+    """
+    Metric the measure whether the answer is non-empty.
+    We assume there's an answer processing step and we expect non empty string.
+    """
+
+    def __init__(self, key_names: dict, **kwargs) -> None:
+        """
+        Initializes an instance of the class.
+
+        Args:
+            key_names (dict): A dictionary containing the field names.
+        """
+        super().__init__(key_names, **kwargs)
+        self.local = True
+
+    def measure(self, example):
+        input = example[self.field]
+        return {"NonEmpty": int(input != "")}

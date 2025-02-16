@@ -1,0 +1,87 @@
+Question: What is the shared profession of Jack Kerouac and Dan Masterson?
+Context:
+Jack Kerouac bibliography: Jack Kerouac (March 12, 1922 – October 21, 1969) was an American novelist and poet. He is considered a literary iconoclast and, alongside William S. Burroughs and Allen Ginsberg, a pioneer of the Beat Generation. Kerouac is recognized for his method of spontaneous prose.
+Dan Masterson: Dan Masterson (February 22, 1934 – August 12, 2022) was an American poet; he was  born in Buffalo, New York. Biography
+Dan Masterson was born to Stephen and Kathleen Masterson in 1934, during the Great Depression, the youngest of three children. He attended St. Paul's Parochial School in the Buffalo suburb, Kenmore, and graduated from Kenmore High School in 1952; Masterson was the president of his graduating class.
+Jack Kerouac School: The Jack Kerouac School of Disembodied Poetics is a school of Naropa University, located in Boulder, Colorado, United States. It was founded in 1974 by Allen Ginsberg and Anne Waldman, as part of Chögyam Trungpa Rinpoche’s 100-year experiment. Its programs consist of a BA in creative writing and literature, a residential MFA in creative writing and poetics, an MFA in creative writing, the undergraduate Core Writing Seminars and the Summer Writing Program.
+On the Road: On the Road is a 1957 novel by American writer Jack Kerouac, based on the travels of Kerouac and his friends across the United States. It is considered a defining work of the postwar Beat and Counterculture generations, with its protagonists living life against a backdrop of jazz, poetry, and drug use. The novel is a roman à clef, with many key figures of the Beat movement, such as William S. Burroughs (Old Bull Lee), Allen Ginsberg (Carlo Marx), and Neal Cassady (Dean Moriarty) represented by characters in the book, including Kerouac, himself, as the narrator, Sal Paradise.
+Blues and Haikus: Blues and Haikus is the American novelist and poet Jack Kerouac's second album and was released in 1959. History
+On the album, Kerouac's poetry readings are accompanied by jazz saxophonists Al Cohn and Zoot Sims. The album is included in the CD box set The Jack Kerouac Collection.
+####
+1. **Question:** When was Jack Kerouac born?
+   - **Answer:** March 12, 1922.
+
+2. **Question:** What generation is Jack Kerouac considered a pioneer of?
+   - **Answer:** The Beat Generation.
+
+3. **Question:** What was Dan Masterson's profession?
+   - **Answer:** Poet.
+
+4. **Question:** When did Dan Masterson pass away?
+   - **Answer:** August 12, 2022.
+
+5. **Question:** Where was Dan Masterson born?
+   - **Answer:** Buffalo, New York.
+
+6. **Question:** What notable novel did Jack Kerouac write in 1957?
+   - **Answer:** On the Road.
+
+7. **Question:** What type of music is associated with Jack Kerouac's album "Blues and Haikus"?
+   - **Answer:** Jazz.
+
+8. **Question:** Who were the jazz saxophonists featured in Jack Kerouac's album "Blues and Haikus"?
+   - **Answer:** Al Cohn and Zoot Sims.
+
+9. **Question:** What school is named after Jack Kerouac?
+   - **Answer:** The Jack Kerouac School of Disembodied Poetics.
+
+10. **Question:** What degree programs does the Jack Kerouac School offer?
+    - **Answer:** BA in creative writing and literature, MFA in creative writing and poetics.
+
+Summary:
+Jack Kerouac was an American novelist and poet, known for his work in the Beat Generation. Dan Masterson was also an American poet. Both shared the profession of being poets. Kerouac is renowned for his spontaneous prose style and influential works such as "On the Road". Masterson had a notable career and connection to Buffalo, New York. Kerouac also explored musical collaborations, as evidenced by his album "Blues and Haikus".
+
+Answer: Poet.
+####
+Question: Which band top the UK charts with their singles "Chelsea Dagger" and "Whistle for the Choir": The Fratellis or The Madden Brothers?
+Context:
+The Fratellis: The Fratellis are a Scottish rock band from Glasgow, formed in 2005. The band consists of three unrelated members, who perform under pseudonyms: lead vocalist and guitarist Jon Fratelli, bassist Barry Fratelli, and drummer Mince Fratelli. Their singles "Chelsea Dagger" and "Whistle for the Choir" were both top ten hits in the UK charts.
+Whistle for the Choir: "Whistle for the Choir" is a song by Scottish rock band the Fratellis. It was released on 27 November 2006 as the band's third single and reached number nine on the UK Singles Chart, marking their second UK top-10 single. In the band's native Scotland, the song reached number two, becoming their second song to reach that position after "Chelsea Dagger".
+Chelsea Dagger: "Chelsea Dagger" is a song by Scottish rock band the Fratellis. It was released as the second single from their debut studio album, Costello Music (2006), on 28 August 2006. It is named after Jon Fratelli's wife Heather, a burlesque dancer whose stage name – a play on Britney Spears – he borrowed for the song.
+Half Drunk Under a Full Moon: Guitarist and vocalist Jon Fratelli had previously sought this approach on their debut album's most successful single, "Chelsea Dagger": "I wasn't mad keen on going down the road of the chant vocals. I really wanted to have a New Orleans big band playing. But Tony Hoffer, our producer, had us doing multiple vocal takes from all around the studio."
+The Brothers (band): The Brothers (also referenced in some sources as simply Brothers) were a UK-based band that scored a top ten hit on the British chart with the song, "Sing Me." The sprightly, reggae-inflected song reached number 8 on the UK Singles Chart in the Spring of 1977. The band consisted of 5 real brothers with the surname Bayou - Clarel (lead vocals), Lindsay (guitar), Gervais (keyboards and guitar), Daniel (bass) and Clarey (drums).
+####
+1. **Which band is from Glasgow and formed in 2005?**
+   - The Fratellis
+
+2. **What are the names of the members of The Fratellis?**
+   - Jon Fratelli, Barry Fratelli, and Mince Fratelli
+
+3. **Which band had the hit singles "Chelsea Dagger" and "Whistle for the Choir"?**
+   - The Fratellis
+
+4. **When was "Whistle for the Choir" released?**
+   - 27 November 2006
+
+5. **What was the highest chart position "Whistle for the Choir" reached in the UK?**
+   - Number nine
+
+6. **What is "Chelsea Dagger" named after?**
+   - Jon Fratelli's wife Heather, a burlesque dancer
+
+7. **When was "Chelsea Dagger" released as a single?**
+   - 28 August 2006
+
+8. **What was Jon Fratelli's original idea for the sound of "Chelsea Dagger"?**
+   - To have a New Orleans big band playing
+
+9. **Which band scored a top ten hit with the song "Sing Me"?**
+   - The Brothers
+
+10. **Who are the members of The Brothers band?**
+    - Clarel, Lindsay, Gervais, Daniel, and Clarey Bayou
+
+Summary:
+The Fratellis, a Scottish rock band from Glasgow formed in 2005, had two top ten hits in the UK charts with their singles "Chelsea Dagger" and "Whistle for the Choir." "Whistle for the Choir" reached number nine on the UK Singles Chart, while "Chelsea Dagger" was named after Jon Fratelli's wife and released on 28 August 2006. The Brothers, a different UK-based band, had a top ten hit with "Sing Me."
+
+Answer: The Fratellis

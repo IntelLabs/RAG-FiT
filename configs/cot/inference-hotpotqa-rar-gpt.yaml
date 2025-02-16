@@ -1,0 +1,21 @@
+# @package _global_
+model:
+    _target_: ragfit.models.api.AzureLLM
+    azure_endpoint: azure.endpoint.com
+    azure_deployment: gpt-4o
+    api_version: 2024-02-15-preview
+    max_tokens: 500
+    instruction: ragfit/processing/prompts/prompt_instructions/qa-rar.txt
+    template: ragfit/processing/prompts/qa-no-rag.txt
+    template_map:
+        question: query
+    extra_keys:
+    examples:
+
+
+data_file: ./data/evaluation/facebook-kilt_tasks-hotpotqa-validation-raft-context-zeroshot.jsonl
+generated_file: cot1-no-rag-hotpotqa-test-gpt4-generated.jsonl
+input_key: prompt
+generation_key: output
+target_key: answers
+limit: 150

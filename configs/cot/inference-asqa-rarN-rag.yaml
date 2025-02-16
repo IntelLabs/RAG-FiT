@@ -1,0 +1,34 @@
+# @package _global_
+model:
+    _target_: ragfit.models.hf.HFInferencePrompt
+    model_name_or_path: meta-llama/Meta-Llama-3.1-8B-Instruct
+    load_in_4bit: false
+    load_in_8bit: true
+    attn_implementation: flash_attention_2
+    device_map: auto
+    torch_dtype:
+    trust_remote_code: true
+    instruction: ragfit/processing/prompts/prompt_instructions/qa-rephrase-N-rag.txt
+    template: ragfit/processing/prompts/qa-rag.txt
+    template_map:
+        question: query
+        context: rag_context
+    extra_keys:
+         N: three
+    examples: ragfit/processing/prompts/fewshots/3-rag.txt
+    lora_path:
+    generation:
+        do_sample: false
+        max_new_tokens: 500
+        max_length:
+        temperature:
+        top_k:
+        top_p:
+        return_full_text: false
+
+data_file: ./data/evaluation/din0s-asqa-dev-shortans-raft-context-zeroshot.jsonl
+generated_file: cotN-asqa-test-generated.jsonl
+input_key: prompt
+generation_key: output
+target_key: answers
+limit: 200

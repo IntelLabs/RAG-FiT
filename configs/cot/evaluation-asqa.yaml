@@ -1,0 +1,20 @@
+# @package _global_
+answer_processor:
+    _target_: ragfit.processing.answer_processors.regex.SimpleRegex
+    pattern:
+
+metrics:
+    - _target_: ragfit.evaluation.metrics.RecallEM
+
+key_names:
+    generated: text
+    label: answer-short
+    query: query
+
+results_file:
+generated_file: data/inference/baseline-asqa-test-generated.jsonl
+data_file: data/evaluation/din0s-asqa-dev-shortans-raft-context-zeroshot.jsonl
+limit:
+use_wandb:
+experiment:
+wandb_entity:

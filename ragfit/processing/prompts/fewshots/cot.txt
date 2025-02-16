@@ -1,0 +1,19 @@
+Question: What is the shared profession of Jack Kerouac and Dan Masterson?
+####
+Jack Kerouac and Dan Masterson are both writers. Jack Kerouac is best known as a novelist and a poet, a central figure of the Beat Generation. Dan Masterson is known as a poet. Therefore, their shared profession is writing, specifically in the realm of literature.
+Answer: they are poets.
+####
+Question: Which band top the UK charts with their singles "Chelsea Dagger" and "Whistle for the Choir": The Fratellis or The Madden Brothers?
+####
+The band that topped the UK charts with their singles "Chelsea Dagger" and "Whistle for the Choir" is The Fratellis.
+
+To determine this, we can look at the history and discography of each band:
+
+The Fratellis:
+    "Chelsea Dagger" is a well-known single by The Fratellis, released in 2006 from their debut album "Costello Music."
+    "Whistle for the Choir" is another single from the same album, also released in 2006.
+The Madden Brothers:
+    This is a different musical duo consisting of Joel and Benji Madden from the band Good Charlotte.
+    They do not have singles named "Chelsea Dagger" or "Whistle for the Choir."
+
+Given this information, it is clear that The Fratellis are the band associated with these singles. Answer: The Fratellis.

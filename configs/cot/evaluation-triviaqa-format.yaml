@@ -1,0 +1,22 @@
+# @package _global_
+answer_processor:
+    _target_: ragfit.processing.answer_processors.regex.SimpleRegex
+    pattern: "Answer"
+
+metrics:
+    - _target_: ragfit.evaluation.metrics.StringEM
+    - _target_: ragfit.evaluation.metrics.NonEmpty
+
+key_names:
+    generated: text
+    label: answers
+    query: query
+
+results_file:
+generated_file: data/inference/baseline-triviaqa-test-generated.jsonl
+data_file: data/evaluation/Tevatron-wikipedia-trivia-dev-raft-context-zeroshot.jsonl
+limit:
+feature:
+use_wandb:
+experiment:
+wandb_entity:

@@ -24,9 +24,9 @@ class BaseStep:
         if isinstance(self.inputs, str):
             self.inputs = [self.inputs]
 
-        assert (
-            not isinstance(self.inputs, str) and len(self.inputs) > 0
-        ), f"`inputs` should be a list, got {type(self.inputs)}"
+        assert not isinstance(self.inputs, str) and len(self.inputs) > 0, (
+            f"`inputs` should be a list, got {type(self.inputs)}"
+        )
 
     def calc_hash(self):
         """

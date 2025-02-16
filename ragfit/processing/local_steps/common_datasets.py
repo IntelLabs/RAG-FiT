@@ -1,6 +1,18 @@
-from ragfit.evaluation.metrics import normalize_text
+from ragfit.utils import normalize_text
 
 from ..step import LocalStep
+
+
+class Squad(LocalStep):
+    """
+    Class for the Squad1.1 and Squad2 datases.
+    """
+
+    def process_item(self, item, index, datasets, **kwargs):
+        item["answers"] = item["answers"]["text"]
+        item["query"] = item["question"]
+
+        return item
 
 
 class ASQA(LocalStep):

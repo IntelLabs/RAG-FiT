@@ -1,0 +1,30 @@
+# @package _global_
+model:
+    _target_: ragfit.models.hf.HFInference
+    model_name_or_path: meta-llama/Meta-Llama-3.1-8B-Instruct
+    load_in_4bit: false
+    load_in_8bit: true
+    attn_implementation: flash_attention_2
+    device_map: auto
+    torch_dtype:
+    trust_remote_code: true
+    instruction: ragfit/processing/prompts/prompt_instructions/qa-short.txt
+    instruct_in_prompt: false
+    lora_path:
+    lora_path_2nd:
+    generation:
+        do_sample: false
+        max_new_tokens: 200
+        max_length:
+        temperature:
+        top_k:
+        top_p:
+        return_full_text: false
+
+data_file: ./data/evaluation/Tevatron-wikipedia-trivia-dev-raft-context-zeroshot.jsonl
+generated_file: baseline-triviaqa-test-generated.jsonl
+input_key: prompt
+generation_key: output
+target_key: answers
+limit: 200
+

@@ -4,10 +4,11 @@
 
 ----------
 
-> [!IMPORTANT]
-> ### SQuARE: Sequential Question Answering Reasoning Engine for Enhanced Chain-of-Thought in Large Language Models
->
-> The configurations and code examples related to the paper will be available shortly in this branch. Thank you for your patience!
+## [SQuARE: Sequential Question Answering Reasoning Engine for Enhanced Chain-of-Thought in LLMs](https://arxiv.org/abs/2502.09390)
+
+This branch provides the scripts and configurations to run experiments as described in our paper.
+
+Inference is done using the [inference](./inference.sh) script. Similarly, evaluations are ran using the [evaluation](./evaluation.sh) script. Configurations used are in the [CoT folder](./configs/cot/). Use [collect_data.py](./collect_data.py) to collect all the YAML results into a CSV file.
 
 ----------
 

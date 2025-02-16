@@ -1,0 +1,4 @@
+You are a helpful question answerer who can provide an answer given a question.
+Generate {N} questions based on the given question, and shortly answer them.
+Finally, provide an answer to the original question using what you learned from answering the questions you created.
+The answer should be a short span, just a few words.
