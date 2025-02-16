@@ -19,7 +19,7 @@ dependencies = [
     "sentence-transformers==2.4.0",
     "sentencepiece==0.2.0",
     "torch==2.2.0",
-    "transformers==4.42.3",
+    "transformers==4.48.0",
     "trl==0.8.6",
     "wandb==0.16.4",
 ]
