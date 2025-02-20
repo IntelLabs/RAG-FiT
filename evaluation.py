@@ -94,6 +94,10 @@ def main(args):
     if args.use_wandb:
         run.log(results, step=0)
 
+    if getattr(args, "feature", None):
+        left, right = args.generated_file.split("-test-")
+        args.generated_file = f"{left}-{args.feature}-test-{right}"
+
     if args.results_file is None:
         args.results_file = Path(args.generated_file).stem + "-results.yaml"
 
