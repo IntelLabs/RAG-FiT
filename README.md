@@ -45,7 +45,8 @@ fields and metadata. See [Processing.md](docs/processing.md).
 * **Training**: using PEFT for efficient training and TRL (e.g. supervised FT) users can train any model on the augmented
 datasets. Training is done on the completions. Models can be pushed to HF Hub. See [Training.md](docs/training.md).
 
-* **Inference**: generating predictions using the augmented datasets with trained or untrained LLMs. See [Inference.md](docs/inference.md).
+* **Inference**: generating predictions using the augmented datasets with trained or untrained LLMs. Supports HuggingFace models,
+vLLM, Azure OpenAI, and [MiniMax](https://www.minimaxi.com/) cloud API. See [Inference.md](docs/inference.md).
 
 * **Evaluation**: running evaluation on the generated output from the inference module. Users can provide a list of
 metrics to run; custom metrics can be implemented easily. Current metrics include EM, F1, ROUGE, BERTScore, Deepeval,
@@ -53,6 +54,36 @@ RAGAS, HF `evaluate` and classification. Metrics can be *local*—run on each ex
 dataset, e.g. recall. Metrics can utilize any feature in the dataset, like retrieval results, reasoning,
 citations and attributions, not just the input and output texts. See [Evaluation.md](docs/evaluation.md).
 
+
+## Cloud LLM Providers
+
+RAG-FiT supports cloud LLM APIs for both data processing (augmenting datasets with LLM-generated content) and inference.
+
+### Azure OpenAI
+
+Used via `OpenAIExecutor` / `OpenAIChat`. Requires an Azure endpoint and API key.
+
+### MiniMax
+
+[MiniMax](https://www.minimaxi.com/) provides powerful LLMs (MiniMax-M2.7, MiniMax-M2.7-highspeed) through an OpenAI-compatible API.
+
+**Setup**: Set the `MINIMAX_API_KEY` environment variable.
+
+**Inference** with MiniMax:
+```sh
+MINIMAX_API_KEY=your_key python inference.py -cp configs -cn inference-minimax
+```
+
+**Processing** with MiniMax (data augmentation):
+```yaml
+- _target_: ragfit.processing.local_steps.api.minimax.MiniMaxChat
+  inputs: train
+  prompt_key: prompt
+  answer_key: generated_answer
+  instruction: ragfit/processing/prompts/prompt_instructions/qa.txt
+  model:
+      model: MiniMax-M2.7
+```
 
 ## Running
 The 4 modules are represented as scripts: `processing.py`, `training.py`, `inference.py` and `evaluation.py` at the top

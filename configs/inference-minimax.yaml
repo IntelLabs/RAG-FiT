@@ -1,0 +1,18 @@
+# MiniMax Cloud API inference configuration.
+# Requires MINIMAX_API_KEY environment variable.
+# Supported models: MiniMax-M2.7, MiniMax-M2.7-highspeed
+
+model:
+    _target_: ragfit.models.minimax_executor.MiniMaxExecutor
+    model: MiniMax-M2.7
+    chat_parameters:
+        temperature: 0.7
+        max_tokens: 200
+        top_p: 0.95
+
+data_file: my-processed-data.jsnol
+generated_file: model-predictions.jsonl
+input_key: prompt
+generation_key: output
+target_key: answer
+limit:
